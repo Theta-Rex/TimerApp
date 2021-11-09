@@ -1,21 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Text;
+﻿// <copyright file="MainViewModel.cs" company="Theta Rex, Inc.">
+//    Copyright © 2021 - Theta Rex, Inc.  All Rights Reserved.
+// </copyright>
+// <author>Joshua Kraskin</author>
 
 namespace TimerApp
 {
-    class MainViewModel
+    using System.Collections.ObjectModel;
+
+    /// <summary>
+    /// MainViewModel class.
+    /// </summary>
+    public class MainViewModel
     {
-        public ObservableCollection<MyTimer> MyTimers { get; set; }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MainViewModel"/> class.
+        /// </summary>
         public MainViewModel()
         {
-            MyTimers = new ObservableCollection<MyTimer>();
-
-            MyTimers.Add(new MyTimer("Timer 1", "0"));
-            MyTimers.Add(new MyTimer("Timer 2", "0"));
-            MyTimers.Add(new MyTimer("Timer 3", "0"));
+            this.MyTimers = new ObservableCollection<MyTimer>();
+            this.MyTimers.Add(new MyTimer("Timer 1", "0"));
+            this.MyTimers.Add(new MyTimer("Timer 2", "0"));
+            this.MyTimers.Add(new MyTimer("Timer 3", "0"));
         }
 
+        /// <summary>
+        /// Gets or sets an Observable Collection of type MyTimers.
+        /// </summary>
+        public ObservableCollection<MyTimer> MyTimers { get; set; }
     }
 }
