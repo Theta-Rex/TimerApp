@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:TimerApp"
+             x:Class="TimerApp.MainPage">
+
+
+    <ContentPage.Content>
+
+ 
+        <StackLayout>
+
+            <ListView x:Name="MyTimersList" ItemsSource="{Binding MyTimers}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <FlexLayout JustifyContent="SpaceBetween" AlignItems="Center" Padding="20, 0">
+
+                                <Entry Text="{Binding EntryTime}" Placeholder="Enter Seconds" Keyboard="Numeric"/>
+                                <Button Text="Start" Command="{Binding StartTimerCommand}"/>
+                                <Label Text="{Binding TimeRemaining, StringFormat='{}{0:hh\\:mm\\:ss}'}" FontSize="20"/>
+
+                            </FlexLayout>
+
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+            </ListView>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
