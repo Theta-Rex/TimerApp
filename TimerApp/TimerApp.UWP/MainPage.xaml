@@ -1,12 +1,8 @@
-﻿<forms:WindowsPage
-    x:Class="TimerApp.UWP.MainPage"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:forms="using:Xamarin.Forms.Platform.UWP"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:TimerApp.UWP"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
-    </Grid>
+﻿<forms:WindowsPage Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+				   x:Class="TimerApp.UWP.MainPage"
+				   xmlns:forms="using:Xamarin.Forms.Platform.UWP"
+				   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+				   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+</Grid>
 </forms:WindowsPage>

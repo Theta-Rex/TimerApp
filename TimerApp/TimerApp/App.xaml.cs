@@ -4,9 +4,7 @@
 // <author>Joshua Kraskin</author>
 namespace TimerApp
 {
-    using System;
     using Xamarin.Forms;
-    using Xamarin.Forms.Xaml;
 
     /// <summary>
     /// App class inherting from Application.
@@ -19,29 +17,7 @@ namespace TimerApp
         public App()
         {
             this.InitializeComponent();
-
             this.MainPage = new MainPage();
-        }
-
-        /// <summary>
-        /// OnStart.
-        /// </summary>
-        protected override void OnStart()
-        {
-        }
-
-        /// <summary>
-        /// OnSleep.
-        /// </summary>
-        protected override void OnSleep()
-        {
-        }
-
-        /// <summary>
-        /// OnResume.
-        /// </summary>
-        protected override void OnResume()
-        {
         }
     }
 }

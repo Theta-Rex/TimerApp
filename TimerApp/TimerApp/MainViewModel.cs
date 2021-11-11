@@ -2,7 +2,6 @@
 //    Copyright © 2021 - Theta Rex, Inc.  All Rights Reserved.
 // </copyright>
 // <author>Joshua Kraskin</author>
-
 namespace TimerApp
 {
     using System.Collections.ObjectModel;
@@ -17,15 +16,14 @@ namespace TimerApp
         /// </summary>
         public MainViewModel()
         {
-            this.MyTimers = new ObservableCollection<MyTimer>();
             this.MyTimers.Add(new MyTimer("Timer 1", "0"));
             this.MyTimers.Add(new MyTimer("Timer 2", "0"));
             this.MyTimers.Add(new MyTimer("Timer 3", "0"));
         }
 
         /// <summary>
-        /// Gets or sets an Observable Collection of type MyTimers.
+        /// Gets a collection of MyTimers.
         /// </summary>
-        public ObservableCollection<MyTimer> MyTimers { get; set; }
+        public ObservableCollection<MyTimer> MyTimers { get; } = new ObservableCollection<MyTimer>();
     }
 }

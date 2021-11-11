@@ -5,9 +5,8 @@
 namespace TimerApp
 {
     using System;
-    using System.Collections.Generic;
     using System.ComponentModel;
-    using System.Text;
+    using System.Globalization;
     using System.Timers;
     using System.Windows.Input;
     using Xamarin.Forms;
@@ -15,17 +14,22 @@ namespace TimerApp
     /// <summary>
     /// MyTimer class creates an object for each Timer.
     /// </summary>
-    public class MyTimer : INotifyPropertyChanged
+    public class MyTimer : INotifyPropertyChanged, IDisposable
     {
         /// <summary>
-        /// calculates time remaining which is bound to the label.
+        ///  The update interval of the timer.
         /// </summary>
-        private TimeSpan timeRemaining;
+        private const int TimerInterval = 1000;
 
         /// <summary>
         /// System timer.
         /// </summary>
-        private Timer timer;
+        private readonly Timer timer = new Timer() { Enabled = true, Interval = MyTimer.TimerInterval };
+
+        /// <summary>
+        /// Calculates time remaining which is bound to the label.
+        /// </summary>
+        private TimeSpan timeRemaining;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MyTimer"/> class.
@@ -34,8 +38,9 @@ namespace TimerApp
         /// <param name="entrytime">gets entrytime from user.</param>
         public MyTimer(string timername, string entrytime)
         {
-            this.TimerName = timername;
+            // Initialize the object.
             this.EntryTime = entrytime;
+            this.TimerName = timername;
         }
 
         /// <summary>
@@ -44,9 +49,9 @@ namespace TimerApp
         public event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>
-        /// gets or sets TimerName (not currently used).
+        /// gets or sets EndTime.
         /// </summary>
-        public string TimerName { get; set; }
+        public DateTime EndTime { get; set; }
 
         /// <summary>
         /// gets or sets EntryTime, which is the amount of time entered by the user.
@@ -59,9 +64,9 @@ namespace TimerApp
         public DateTime StartTime { get; set; }
 
         /// <summary>
-        /// gets or sets EndTime.
+        /// gets or sets TimerName (not currently used).
         /// </summary>
-        public DateTime EndTime { get; set; }
+        public string TimerName { get; set; }
 
         /// <summary>
         /// gets or sets TimeRemaining for propertychange.
@@ -80,9 +85,30 @@ namespace TimerApp
         }
 
         /// <summary>
-        /// Gets StartTimerCommand.
+        /// Gets the StartTimer command.
         /// </summary>
-        public ICommand StartTimerCommand => new Command(this.StartTimer);
+        public ICommand StartTimer => new Command(o => this.StartTimerHandler());
+
+        /// <inheritdoc/>
+        public void Dispose()
+        {
+            // Dispose of unmanaged resources and suppress finalization.
+            this.Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        /// <summary>
+        /// Dispose of the managed resources.
+        /// </summary>
+        /// <param name="disposing">An indication whether the managed resources are to be disposed.</param>
+        protected virtual void Dispose(bool disposing)
+        {
+            // Dispose of the managed resources.
+            if (disposing)
+            {
+                this.timer.Dispose();
+            }
+        }
 
         /// <param name="property">used for propety change.</param>
         private void OnPropertyChanged(string property)
@@ -90,30 +116,21 @@ namespace TimerApp
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
         }
 
-        private void StartTimer(object o)
+        /// <summary>
+        /// Starts the timer.
+        /// </summary>
+        private void StartTimerHandler()
         {
-            this.StartTime = DateTime.Now;
-            TimeSpan t = TimeSpan.FromSeconds(int.Parse(this.EntryTime));
-            this.EndTime = this.StartTime + t;
-
-            this.SystemTimer();
-        }
-
-        private void SystemTimer()
-        {
-            this.timer = new System.Timers.Timer();
-            this.timer.Interval = 100;
-            this.timer.Elapsed += OnTimedEvent;
-            this.timer.AutoReset = true;
-            this.timer.Enabled = true;
-            void OnTimedEvent(object sender, ElapsedEventArgs e)
+            this.EndTime = DateTime.Now + TimeSpan.FromSeconds(int.Parse(this.EntryTime, CultureInfo.InvariantCulture));
+            this.timer.Start();
+            this.timer.Elapsed += (s, e) =>
             {
                 this.TimeRemaining = this.EndTime - DateTime.Now;
                 if (this.TimeRemaining <= TimeSpan.Zero)
                 {
                     this.timer.Stop();
                 }
-            }
+            };
         }
     }
 }
