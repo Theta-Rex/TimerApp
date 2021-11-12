@@ -4,6 +4,7 @@
 // <author>Joshua Kraskin</author>
 namespace TimerApp
 {
+    using System;
     using Xamarin.Forms;
 
     /// <summary>

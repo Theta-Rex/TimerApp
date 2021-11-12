@@ -129,6 +129,7 @@ namespace TimerApp
                 if (this.TimeRemaining <= TimeSpan.Zero)
                 {
                     this.timer.Stop();
+                    Device.BeginInvokeOnMainThread(async () => await Application.Current.MainPage.DisplayAlert("Timer Complete", $"Your timer for {this.EntryTime} seconds has completed!", "OK"));
                 }
             };
         }
