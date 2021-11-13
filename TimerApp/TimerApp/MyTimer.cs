@@ -26,6 +26,8 @@ namespace TimerApp
         /// </summary>
         private readonly Timer timer = new Timer() { Enabled = true, Interval = MyTimer.TimerInterval };
 
+        private string playPauseImage;
+
         /// <summary>
         /// Calculates time remaining which is bound to the label.
         /// </summary>
@@ -41,6 +43,7 @@ namespace TimerApp
             // Initialize the object.
             this.EntryTime = entrytime;
             this.TimerName = timername;
+            this.PlayPauseImage = "Assets/play.png";
         }
 
         /// <summary>
@@ -57,6 +60,27 @@ namespace TimerApp
         /// gets or sets EntryTime, which is the amount of time entered by the user.
         /// </summary>
         public string EntryTime { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether IsRunning is true.
+        /// </summary>
+        public bool IsRunning { get; set; }
+
+        /// <summary>
+        /// Gets or sets PlayPauseImage for propertychange.
+        /// </summary>
+        public string PlayPauseImage
+        {
+            get => this.playPauseImage;
+            set
+            {
+                if (this.playPauseImage != value)
+                {
+                    this.playPauseImage = value;
+                    this.OnPropertyChanged(nameof(this.PlayPauseImage));
+                }
+            }
+        }
 
         /// <summary>
         /// gets or sets StartTime.
@@ -121,17 +145,20 @@ namespace TimerApp
         /// </summary>
         private void StartTimerHandler()
         {
-            this.EndTime = DateTime.Now + TimeSpan.FromSeconds(int.Parse(this.EntryTime, CultureInfo.InvariantCulture));
-            this.timer.Start();
-            this.timer.Elapsed += (s, e) =>
-            {
-                this.TimeRemaining = this.EndTime - DateTime.Now;
-                if (this.TimeRemaining <= TimeSpan.Zero)
+                this.IsRunning = true;
+                this.PlayPauseImage = "Assets/stop.png";
+                this.EndTime = DateTime.Now + TimeSpan.FromSeconds(int.Parse(this.EntryTime, CultureInfo.InvariantCulture));
+                this.timer.Start();
+                this.timer.Elapsed += (s, e) =>
                 {
-                    this.timer.Stop();
-                    Device.BeginInvokeOnMainThread(async () => await Application.Current.MainPage.DisplayAlert("Timer Complete", $"Your timer for {this.EntryTime} seconds has completed!", "OK"));
+                    this.TimeRemaining = this.EndTime - DateTime.Now;
+                    if (this.TimeRemaining <= TimeSpan.Zero)
+                    {
+                        this.timer.Stop();
+                        this.PlayPauseImage = "Assets/play.png";
+                        Device.BeginInvokeOnMainThread(async () => await Application.Current.MainPage.DisplayAlert("Timer Complete", $"Your timer for {this.EntryTime} seconds has completed!", "OK"));
                 }
-            };
+                };
         }
     }
 }
