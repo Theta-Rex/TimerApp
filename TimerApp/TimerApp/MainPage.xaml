@@ -15,8 +15,6 @@
 								<Entry Keyboard="Numeric"
 									   Placeholder="Enter Seconds"
 									   Text="{x:Binding EntryTime}"/>
-								<!--<Button Command="{x:Binding StartTimer}"
-										Text="Start"/>-->
                                 <ImageButton Source="{x:Binding PlayPauseImage}"
                                              Command="{x:Binding StartTimer}"
                                              />
