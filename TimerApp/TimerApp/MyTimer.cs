@@ -44,6 +44,17 @@ namespace TimerApp
             this.EntryTime = entrytime;
             this.TimerName = timername;
             this.PlayPauseImage = "Assets/play.png";
+            this.timer.Elapsed += (s, e) =>
+                {
+                    this.TimeRemaining = this.EndTime - DateTime.Now;
+                    if (this.TimeRemaining <= TimeSpan.Zero)
+                    {
+                        this.timer.Stop();
+                        this.PlayPauseImage = "Assets/play.png";
+                        Device.BeginInvokeOnMainThread(() => App.Current.MainPage.DisplayAlert("Timer Complete", $"Your timer for {this.EntryTime} seconds has completed!", "OK"));
+                        System.Diagnostics.Debug.WriteLine("COMPLETE");
+                    }
+                };
         }
 
         /// <summary>
@@ -145,24 +156,11 @@ namespace TimerApp
         /// </summary>
         private void StartTimerHandler()
         {
-                this.IsRunning = true;
-                this.PlayPauseImage = "Assets/stop.png";
-                this.EndTime = DateTime.Now + TimeSpan.FromSeconds(int.Parse(this.EntryTime, CultureInfo.InvariantCulture));
-                this.TimeRemaining = this.EndTime - DateTime.Now;
-                this.timer.Start();
-                this.timer.Elapsed += TimerElapsed;
-                void TimerElapsed(object sender, ElapsedEventArgs e)
-                {
-                    this.TimeRemaining = this.EndTime - DateTime.Now;
-                    if (this.TimeRemaining <= TimeSpan.Zero)
-                    {
-                        this.timer.Stop();
-                        this.PlayPauseImage = "Assets/play.png";
-                        Device.BeginInvokeOnMainThread(() => App.Current.MainPage.DisplayAlert("Timer Complete", $"Your timer for {this.EntryTime} seconds has completed!", "OK"));
-                        System.Diagnostics.Debug.WriteLine("COMPLETE");
-                        this.timer.Elapsed -= TimerElapsed;
-                    }
-                }
+            this.IsRunning = true;
+            this.PlayPauseImage = "Assets/stop.png";
+            this.EndTime = DateTime.Now + TimeSpan.FromSeconds(int.Parse(this.EntryTime, CultureInfo.InvariantCulture));
+            this.TimeRemaining = this.EndTime - DateTime.Now;
+            this.timer.Start();
         }
     }
 }
