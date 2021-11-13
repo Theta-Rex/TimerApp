@@ -24,7 +24,7 @@ namespace TimerApp
         /// <summary>
         /// System timer.
         /// </summary>
-        private readonly Timer timer = new Timer() { Enabled = true, Interval = MyTimer.TimerInterval };
+        private readonly Timer timer = new Timer() { Interval = MyTimer.TimerInterval };
 
         private string playPauseImage;
 
@@ -44,6 +44,7 @@ namespace TimerApp
             this.EntryTime = entrytime;
             this.TimerName = timername;
             this.PlayPauseImage = "Assets/play.png";
+
             this.timer.Elapsed += (s, e) =>
                 {
                     this.TimeRemaining = this.EndTime - DateTime.Now;
@@ -52,7 +53,6 @@ namespace TimerApp
                         this.timer.Stop();
                         this.PlayPauseImage = "Assets/play.png";
                         Device.BeginInvokeOnMainThread(() => App.Current.MainPage.DisplayAlert("Timer Complete", $"Your timer for {this.EntryTime} seconds has completed!", "OK"));
-                        System.Diagnostics.Debug.WriteLine("COMPLETE");
                     }
                 };
         }
