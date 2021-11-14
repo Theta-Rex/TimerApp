@@ -6,26 +6,25 @@
 			 xmlns="http://xamarin.com/schemas/2014/forms">
 	<ContentPage.Content>
 		<StackLayout>
-            <ListView BackgroundColor="#A3CEF1"
-					  ItemsSource="{x:Binding MyTimers}"
-                      HasUnevenRows="True">
-                <ListView.ItemTemplate>
+			<ListView ItemsSource="{x:Binding MyTimers}"
+					  Style="{StaticResource ListViewStyle}">
+				<ListView.ItemTemplate>
 					<DataTemplate x:DataType="timerapp:MyTimer">
 						<ViewCell>
-                            <Frame BackgroundColor="#80FFFFFF" CornerRadius="20" HasShadow="True" Margin="5">
-                                <FlexLayout AlignItems="Center"
+							<Frame Style="{StaticResource TimerCardStyle}">
+								<FlexLayout AlignItems="Center"
 											JustifyContent="SpaceBetween"
 											Padding="10, 0">
-                                    <Entry Keyboard="Numeric"
+									<Entry Keyboard="Numeric"
 										   Placeholder="Enter Seconds"
 										   Text="{x:Binding EntryTime}"/>
-                                    <ImageButton Command="{x:Binding StartTimer}"
+									<ImageButton Command="{x:Binding StartTimer}"
 												 Source="{x:Binding PlayPauseImage}"/>
-                                    <Label FontSize="20"
+									<Label FontSize="20"
 										   Text="{x:Binding TimeRemaining, StringFormat='{}{0:hh\\:mm\\:ss}'}"/>
 
-                                </FlexLayout>
-                            </Frame>
+								</FlexLayout>
+							</Frame>
 						</ViewCell>
 					</DataTemplate>
 				</ListView.ItemTemplate>

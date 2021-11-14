@@ -1,3 +1,26 @@
-﻿<Application xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TimerApp.App"/>
+﻿<Application x:Class="TimerApp.App"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 xmlns="http://xamarin.com/schemas/2014/forms">
+	<Application.Resources>
+		<ResourceDictionary>
+			<Style x:Key="ListViewStyle"
+				   TargetType="ListView">
+				<Setter Property="BackgroundColor"
+						Value="#A3CEF1"/>
+				<Setter Property="HasUnevenRows"
+						Value="True"/>
+			</Style>
+			<Style x:Key="TimerCardStyle"
+				   TargetType="Frame">
+				<Setter Property="BackgroundColor"
+						Value="#80FFFFFF"/>
+				<Setter Property="CornerRadius"
+						Value="20"/>
+				<Setter Property="HasShadow"
+						Value="True"/>
+				<Setter Property="Margin"
+						Value="5"/>
+			</Style>
+		</ResourceDictionary>
+	</Application.Resources>
+</Application>
