@@ -53,7 +53,6 @@ namespace TimerApp
                         this.timer.Stop();
                         this.PlayPauseImage = "Assets/play.png";
                         Device.BeginInvokeOnMainThread(() => App.Current.MainPage.DisplayAlert("Timer Complete", $"Your timer for {this.EntryTime} seconds has completed!", "OK"));
-                        System.Diagnostics.Debug.WriteLine("COMPLETE");
                     }
                 };
         }

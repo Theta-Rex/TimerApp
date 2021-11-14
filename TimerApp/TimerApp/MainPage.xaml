@@ -2,7 +2,8 @@
 			 x:DataType="timerapp:MainViewModel"
 			 xmlns:timerapp="clr-namespace:TimerApp"
 			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-			 xmlns="http://xamarin.com/schemas/2014/forms">
+			 xmlns="http://xamarin.com/schemas/2014/forms"
+             Title="Timers">
 	<ContentPage.Content>
 		<StackLayout>
 			<ListView ItemsSource="{x:Binding MyTimers}">

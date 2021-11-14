@@ -1,0 +1,9 @@
+﻿<TabbedPage x:Class="TimerApp.TabbedPage1"
+			xmlns:local="clr-namespace:TimerApp"
+			xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			xmlns="http://xamarin.com/schemas/2014/forms"
+            >
+	<!--Pages can be added as references or inline-->
+	<local:MainPage/>
+	<ContentPage Title="About"/>
+</TabbedPage>
