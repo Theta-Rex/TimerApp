@@ -4,6 +4,7 @@ using System.Linq;
 
 using Foundation;
 using UIKit;
+using Windows.Media;
 
 namespace TimerApp.iOS
 {
@@ -23,6 +24,9 @@ namespace TimerApp.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
+            var rendererAssemblies = new[] { typeof(UWPMaterialFrameRenderer).GetTypeInfo().Assembly };
+
+
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);

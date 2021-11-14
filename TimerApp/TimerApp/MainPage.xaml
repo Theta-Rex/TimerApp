@@ -1,27 +1,31 @@
 ﻿<ContentPage x:Class="TimerApp.MainPage"
 			 x:DataType="timerapp:MainViewModel"
 			 xmlns:timerapp="clr-namespace:TimerApp"
+			 Title="Timers"
 			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-			 xmlns="http://xamarin.com/schemas/2014/forms"
-             Title="Timers">
+			 xmlns="http://xamarin.com/schemas/2014/forms">
 	<ContentPage.Content>
 		<StackLayout>
-			<ListView ItemsSource="{x:Binding MyTimers}">
-				<ListView.ItemTemplate>
+            <ListView BackgroundColor="#A3CEF1"
+					  ItemsSource="{x:Binding MyTimers}"
+                      HasUnevenRows="True">
+                <ListView.ItemTemplate>
 					<DataTemplate x:DataType="timerapp:MyTimer">
 						<ViewCell>
-							<FlexLayout AlignItems="Center"
-										JustifyContent="SpaceBetween"
-										Padding="20, 0">
-								<Entry Keyboard="Numeric"
-									   Placeholder="Enter Seconds"
-									   Text="{x:Binding EntryTime}"/>
-                                <ImageButton Source="{x:Binding PlayPauseImage}"
-                                             Command="{x:Binding StartTimer}"
-                                             />
-								<Label FontSize="20"
-									   Text="{x:Binding TimeRemaining, StringFormat='{}{0:hh\\:mm\\:ss}'}"/>
-							</FlexLayout>
+                            <Frame BackgroundColor="#80FFFFFF" CornerRadius="20" HasShadow="True" Margin="5">
+                                <FlexLayout AlignItems="Center"
+											JustifyContent="SpaceBetween"
+											Padding="10, 0">
+                                    <Entry Keyboard="Numeric"
+										   Placeholder="Enter Seconds"
+										   Text="{x:Binding EntryTime}"/>
+                                    <ImageButton Command="{x:Binding StartTimer}"
+												 Source="{x:Binding PlayPauseImage}"/>
+                                    <Label FontSize="20"
+										   Text="{x:Binding TimeRemaining, StringFormat='{}{0:hh\\:mm\\:ss}'}"/>
+
+                                </FlexLayout>
+                            </Frame>
 						</ViewCell>
 					</DataTemplate>
 				</ListView.ItemTemplate>

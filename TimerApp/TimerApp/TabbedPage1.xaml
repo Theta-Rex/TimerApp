@@ -2,8 +2,10 @@
 			xmlns:local="clr-namespace:TimerApp"
 			xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 			xmlns="http://xamarin.com/schemas/2014/forms"
-            >
+            BarBackgroundColor="#274c77"
+            SelectedTabColor="White"
+            UnselectedTabColor="Black">
 	<!--Pages can be added as references or inline-->
-	<local:MainPage/>
-	<ContentPage Title="About"/>
+	<local:MainPage Icon="assets/timerlogo.png"/>
+	<local:AboutPage Icon="assets/about.png"/>
 </TabbedPage>
