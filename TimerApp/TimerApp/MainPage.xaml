@@ -22,10 +22,11 @@
 												 Source="{x:Binding PlayPauseImage}"/>
 									<Label FontSize="20"
 										   Text="{x:Binding TimeRemaining, StringFormat='{}{0:hh\\:mm\\:ss}'}"/>
-                                    <Picker x:Name="logTypePicker" 
-                                            Title="Log Type"
-                                            ItemsSource="{x:Binding LogTypes}"/>
-                                </FlexLayout>
+									<Picker ItemsSource="{x:Binding LogTypes}"
+											SelectedItem="{x:Binding SelectedLogPicker}"/>
+									<Entry Placeholder="Log Message"
+                                           Text="{x:Binding EntryLog}"/>
+								</FlexLayout>
 							</Frame>
 						</ViewCell>
 					</DataTemplate>

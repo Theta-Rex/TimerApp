@@ -57,6 +57,8 @@ namespace TimerApp
 
         private string playPauseImage;
 
+        private string selectedLogPicker;
+
         /// <summary>
         /// Calculates time remaining which is bound to the label.
         /// </summary>
@@ -107,6 +109,8 @@ namespace TimerApp
         /// </summary>
         public string EntryTime { get; set; }
 
+        public string EntryLog { get; set; }
+
         /// <summary>
         /// Gets or sets a value indicating whether IsRunning is true.
         /// </summary>
@@ -129,6 +133,20 @@ namespace TimerApp
                 {
                     this.playPauseImage = value;
                     this.OnPropertyChanged(nameof(this.PlayPauseImage));
+                }
+            }
+        }
+
+        public string SelectedLogPicker
+        {
+            get => this.selectedLogPicker;
+            set
+            {
+                if (this.selectedLogPicker != value)
+                {
+                    this.selectedLogPicker = value;
+                    this.OnPropertyChanged(nameof(this.SelectedLogPicker));
+                    System.Diagnostics.Debug.WriteLine(this.SelectedLogPicker);
                 }
             }
         }
@@ -189,6 +207,11 @@ namespace TimerApp
         private void OnPropertyChanged(string property)
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
+        }
+
+        private void OnLogPicker(object sender, EventArgs args)
+        {
+
         }
 
         /// <summary>
