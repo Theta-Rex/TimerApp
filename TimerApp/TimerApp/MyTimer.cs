@@ -5,11 +5,40 @@
 namespace TimerApp
 {
     using System;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.ComponentModel;
     using System.Globalization;
+    using System.Linq;
     using System.Timers;
     using System.Windows.Input;
     using Xamarin.Forms;
+
+    /// <summary>
+    /// Enum for LogType for each timer.
+    /// </summary>
+    public enum LogType
+    {
+        /// <summary>
+        /// Error.
+        /// </summary>
+        Error,
+
+        /// <summary>
+        /// Warning.
+        /// </summary>
+        Warning,
+
+        /// <summary>
+        /// Debug.
+        /// </summary>
+        Debug,
+
+        /// <summary>
+        /// Information.
+        /// </summary>
+        Information,
+    }
 
     /// <summary>
     /// MyTimer class creates an object for each Timer.
@@ -44,6 +73,12 @@ namespace TimerApp
             this.EntryTime = entrytime;
             this.TimerName = timername;
             this.PlayPauseImage = "Assets/play.png";
+            this.LogTypes = new List<string>();
+
+            foreach (string s in Enum.GetNames(typeof(LogType)))
+            {
+                this.LogTypes.Add(s);
+            }
 
             this.timer.Elapsed += (s, e) =>
                 {
@@ -76,6 +111,11 @@ namespace TimerApp
         /// Gets or sets a value indicating whether IsRunning is true.
         /// </summary>
         public bool IsRunning { get; set; }
+
+        /// <summary>
+        /// Gets or sets list of LogTypes for picker.
+        /// </summary>
+        public List<string> LogTypes { get; set; }
 
         /// <summary>
         /// Gets or sets PlayPauseImage for propertychange.
