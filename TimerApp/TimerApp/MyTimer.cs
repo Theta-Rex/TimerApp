@@ -45,8 +45,6 @@ namespace TimerApp
     /// </summary>
     public class MyTimer : INotifyPropertyChanged, IDisposable
     {
-        private CultureInfo culture = CultureInfo.CurrentCulture;
-
         /// <summary>
         ///  The update interval of the timer.
         /// </summary>
@@ -56,6 +54,8 @@ namespace TimerApp
         /// System timer.
         /// </summary>
         private readonly Timer timer = new Timer() { Interval = MyTimer.TimerInterval };
+
+        private CultureInfo culture = CultureInfo.CurrentCulture;
 
         private string playPauseImage;
 
@@ -100,7 +100,7 @@ namespace TimerApp
                     {
                         this.timer.Stop();
                         this.PlayPauseImage = "Assets/play.png";
-                        Device.BeginInvokeOnMainThread(() => App.Current.MainPage.DisplayAlert("Timer Complete", $"{ this.CountdownFinishedText}", "OK", "Cancel"));
+                        Device.BeginInvokeOnMainThread(() => App.Current.MainPage.DisplayAlert("Timer Complete", $"{this.CountdownFinishedText}", "OK", "Cancel"));
                     }
                 };
         }
@@ -125,6 +125,9 @@ namespace TimerApp
         /// </summary>
         public string EntryTime { get; set; }
 
+        /// <summary>
+        /// gets or sets EntryLog, which is the message the user enters to be logged.
+        /// </summary>
         public string EntryLog { get; set; }
 
         /// <summary>
@@ -153,6 +156,9 @@ namespace TimerApp
             }
         }
 
+        /// <summary>
+        /// gets or sets SelectedLogPicker for propertychange.
+        /// </summary>
         public string SelectedLogPicker
         {
             get => this.selectedLogPicker;
