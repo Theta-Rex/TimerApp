@@ -45,6 +45,8 @@ namespace TimerApp
     /// </summary>
     public class MyTimer : INotifyPropertyChanged, IDisposable
     {
+        private CultureInfo culture = CultureInfo.CurrentCulture;
+
         /// <summary>
         ///  The update interval of the timer.
         /// </summary>
@@ -82,6 +84,15 @@ namespace TimerApp
                 this.LogTypes.Add(s);
             }
 
+            if (this.culture.Name.Equals("en-US"))
+            {
+                this.CountdownFinishedText = $"Yo, your timer for {this.EntryTime} has completed!";
+            }
+            else if (this.culture.Name.Equals("en-CA"))
+            {
+                this.CountdownFinishedText = $"Your timer for {this.EntryTime} expired, eh";
+            }
+
             this.timer.Elapsed += (s, e) =>
                 {
                     this.TimeRemaining = this.EndTime - DateTime.Now;
@@ -89,7 +100,7 @@ namespace TimerApp
                     {
                         this.timer.Stop();
                         this.PlayPauseImage = "Assets/play.png";
-                        Device.BeginInvokeOnMainThread(() => App.Current.MainPage.DisplayAlert("Timer Complete", $"Your timer for {this.EntryTime} seconds has completed!", "OK", "Cancel"));
+                        Device.BeginInvokeOnMainThread(() => App.Current.MainPage.DisplayAlert("Timer Complete", $"{ this.CountdownFinishedText}", "OK", "Cancel"));
                     }
                 };
         }
@@ -98,6 +109,11 @@ namespace TimerApp
         /// used for IPropertyNotify.
         /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
+        /// gets or sets text for DisplayAlert when countdonw completes.
+        /// </summary>
+        public string CountdownFinishedText { get; set; }
 
         /// <summary>
         /// gets or sets EndTime.
