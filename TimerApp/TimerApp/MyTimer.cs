@@ -89,7 +89,7 @@ namespace TimerApp
                     {
                         this.timer.Stop();
                         this.PlayPauseImage = "Assets/play.png";
-                        Device.BeginInvokeOnMainThread(() => App.Current.MainPage.DisplayAlert("Timer Complete", $"Your timer for {this.EntryTime} seconds has completed!", "OK"));
+                        Device.BeginInvokeOnMainThread(() => App.Current.MainPage.DisplayAlert("Timer Complete", $"Your timer for {this.EntryTime} seconds has completed!", "OK", "Cancel"));
                     }
                 };
         }
@@ -207,11 +207,6 @@ namespace TimerApp
         private void OnPropertyChanged(string property)
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
-        }
-
-        private void OnLogPicker(object sender, EventArgs args)
-        {
-
         }
 
         /// <summary>
