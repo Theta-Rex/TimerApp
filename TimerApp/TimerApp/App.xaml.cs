@@ -17,7 +17,7 @@ namespace TimerApp
         public App()
         {
             this.InitializeComponent();
-            this.MainPage = new TabbedPage1();
+            this.MainPage = new NavigationPage(new TabbedPage1());
         }
     }
 }
