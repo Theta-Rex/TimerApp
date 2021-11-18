@@ -4,7 +4,10 @@
 // <author>Joshua Kraskin</author>
 namespace TimerApp
 {
+    using Microsoft.Extensions.DependencyInjection;
+    using System;
     using System.Collections.ObjectModel;
+    using System.Threading.Tasks;
 
     /// <summary>
     /// MainViewModel class.
@@ -25,5 +28,31 @@ namespace TimerApp
         /// Gets a collection of MyTimers.
         /// </summary>
         public ObservableCollection<MyTimer> MyTimers { get; } = new ObservableCollection<MyTimer>();
+
+        //private IServiceProvider CreateServiceProvider()
+        //{
+        //    IServiceCollection services = new ServiceCollection();
+
+        //    services.AddSingleton<IMyTimerService>();
+        //}
+    }
+
+    public class MyTimerService : IMyTimerService
+    {
+
+        public Task<MyTimer> GetTimer(MyTimer mytimer)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddTimer(MyTimer mytimer)
+        {
+
+        }
+    }
+
+    public interface IMyTimerService
+    {
+        Task<MyTimer> GetTimer(MyTimer mytimer);
     }
 }
