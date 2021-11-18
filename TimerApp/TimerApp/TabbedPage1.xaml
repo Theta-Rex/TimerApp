@@ -5,7 +5,4 @@
             BarBackgroundColor="#274c77"
             SelectedTabColor="White"
             UnselectedTabColor="Black">
-	<!--Pages can be added as references or inline-->
-	<local:MainPage Icon="assets/timerlogo.png"/>
-	<local:AboutPage Icon="assets/about.png"/>
 </TabbedPage>

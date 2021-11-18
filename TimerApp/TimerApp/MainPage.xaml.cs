@@ -4,7 +4,6 @@
 // <author>Joshua Kraskin</author>
 namespace TimerApp
 {
-    using System;
     using Xamarin.Forms;
 
     /// <summary>
@@ -15,10 +14,11 @@ namespace TimerApp
         /// <summary>
         /// Initializes a new instance of the <see cref="MainPage"/> class.
         /// </summary>
-        public MainPage()
+        /// <param name="mainViewModel">The main view model.</param>
+        public MainPage(MainViewModel mainViewModel)
         {
             this.InitializeComponent();
-            this.BindingContext = new MainViewModel();
+            this.BindingContext = mainViewModel;
         }
     }
 }

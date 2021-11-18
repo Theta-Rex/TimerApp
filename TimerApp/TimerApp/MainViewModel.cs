@@ -4,10 +4,9 @@
 // <author>Joshua Kraskin</author>
 namespace TimerApp
 {
-    using Microsoft.Extensions.DependencyInjection;
     using System;
     using System.Collections.ObjectModel;
-    using System.Threading.Tasks;
+    using Microsoft.Extensions.DependencyInjection;
 
     /// <summary>
     /// MainViewModel class.
@@ -15,44 +14,26 @@ namespace TimerApp
     public class MainViewModel
     {
         /// <summary>
+        /// The service provider.
+        /// </summary>
+        private readonly IServiceProvider serviceProvider;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="MainViewModel"/> class.
         /// </summary>
-        public MainViewModel()
+        /// <param name="serviceProvider">The DI container.</param>
+        public MainViewModel(IServiceProvider serviceProvider)
         {
-            this.MyTimers.Add(new MyTimer("Timer 1", "0"));
-            this.MyTimers.Add(new MyTimer("Timer 2", "0"));
-            this.MyTimers.Add(new MyTimer("Timer 3", "0"));
+            // Initialize the object.
+            this.serviceProvider = serviceProvider;
+
+            // Create a single timer using DI.
+            this.MyTimers.Add(serviceProvider.GetRequiredService<MyTimer>());
         }
 
         /// <summary>
         /// Gets a collection of MyTimers.
         /// </summary>
         public ObservableCollection<MyTimer> MyTimers { get; } = new ObservableCollection<MyTimer>();
-
-        //private IServiceProvider CreateServiceProvider()
-        //{
-        //    IServiceCollection services = new ServiceCollection();
-
-        //    services.AddSingleton<IMyTimerService>();
-        //}
-    }
-
-    public class MyTimerService : IMyTimerService
-    {
-
-        public Task<MyTimer> GetTimer(MyTimer mytimer)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void AddTimer(MyTimer mytimer)
-        {
-
-        }
-    }
-
-    public interface IMyTimerService
-    {
-        Task<MyTimer> GetTimer(MyTimer mytimer);
     }
 }

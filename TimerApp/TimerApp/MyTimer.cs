@@ -4,12 +4,12 @@
 // <author>Joshua Kraskin</author>
 namespace TimerApp
 {
+    using Microsoft.Extensions.Localization;
+    using Microsoft.Extensions.Logging;
     using System;
     using System.Collections.Generic;
-    using System.Collections.ObjectModel;
     using System.ComponentModel;
     using System.Globalization;
-    using System.Linq;
     using System.Timers;
     using System.Windows.Input;
     using Xamarin.Forms;
@@ -55,6 +55,10 @@ namespace TimerApp
         /// </summary>
         private readonly Timer timer = new Timer() { Interval = MyTimer.TimerInterval };
 
+        private readonly ILogger logger;
+
+        private readonly IStringLocalizer stringLocalizer;
+
         private CultureInfo culture = CultureInfo.CurrentCulture;
 
         private string playPauseImage;
@@ -69,13 +73,11 @@ namespace TimerApp
         /// <summary>
         /// Initializes a new instance of the <see cref="MyTimer"/> class.
         /// </summary>
-        /// <param name="timername">name of timer.</param>
-        /// <param name="entrytime">gets entrytime from user.</param>
-        public MyTimer(string timername, string entrytime)
+        public MyTimer(ILogger<MyTimer> logger, IStringLocalizer<MyTimer> stringLocalizer)
         {
             // Initialize the object.
-            this.EntryTime = entrytime;
-            this.TimerName = timername;
+            this.logger = logger;
+            this.stringLocalizer = stringLocalizer;
             this.PlayPauseImage = "Assets/play.png";
             this.LogTypes = new List<string>();
 
