@@ -25,6 +25,7 @@ namespace TimerApp
             // Initialize the IDE components.
             this.InitializeComponent();
 
+
             // Build the Dependency Injection container.
             this.serviceProvider = new ServiceCollection()
                 .AddTransient<MainViewModel>()
@@ -39,7 +40,7 @@ namespace TimerApp
         protected override void OnStart()
         {
             // This is now the main page.
-            this.MainPage = this.serviceProvider.GetRequiredService<MainPage>();
+            this.MainPage = new NavigationPage(new FlyoutPage1());
 
             // Allow the base class to finish starting the app.
             base.OnStart();

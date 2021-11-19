@@ -15,10 +15,14 @@ namespace TimerApp
         /// Initializes a new instance of the <see cref="MainPage"/> class.
         /// </summary>
         /// <param name="mainViewModel">The main view model.</param>
-        public MainPage(MainViewModel mainViewModel)
+        //public MainPage(MainViewModel mainViewModel)
+        //{
+        //    this.InitializeComponent();
+        //    this.BindingContext = mainViewModel;
+        //}
+        public MainPage()
         {
             this.InitializeComponent();
-            this.BindingContext = mainViewModel;
         }
     }
 }
