@@ -5,6 +5,8 @@
 namespace TimerApp
 {
     using Microsoft.Extensions.DependencyInjection;
+    using TimerApp.ViewModels;
+    using TimerApp.Views;
     using Xamarin.Forms;
 
     /// <summary>
@@ -25,12 +27,17 @@ namespace TimerApp
             // Initialize the IDE components.
             this.InitializeComponent();
 
-
             // Build the Dependency Injection container.
             this.serviceProvider = new ServiceCollection()
-                .AddTransient<MainViewModel>()
+                .AddTransient<AboutViewModel>()
+                .AddTransient<MasterViewModel>()
+                .AddTransient<TimerViewModel>()
+                .AddTransient<TimerItemViewModel>()
+                .AddTransient<AboutPage>()
                 .AddTransient<MainPage>()
-                .AddTransient<MyTimer>()
+                .AddTransient<MasterPage>()
+                .AddTransient<Navigator>()
+                .AddTransient<TimerPage>()
                 .AddLocalization()
                 .AddLogging()
                 .BuildServiceProvider();
@@ -40,7 +47,7 @@ namespace TimerApp
         protected override void OnStart()
         {
             // This is now the main page.
-            this.MainPage = new NavigationPage(new FlyoutPage1());
+            this.MainPage = this.serviceProvider.GetRequiredService<MainPage>();
 
             // Allow the base class to finish starting the app.
             base.OnStart();

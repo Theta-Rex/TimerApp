@@ -2,18 +2,9 @@
 //    Copyright © 2021 - Theta Rex, Inc.  All Rights Reserved.
 // </copyright>
 // <author>Joshua Kraskin</author>
-namespace TimerApp
+namespace TimerApp.Views
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-
     using Xamarin.Forms;
-    using Xamarin.Forms.Xaml;
-
-    [XamlCompilation(XamlCompilationOptions.Compile)]
 
     /// <summary>
     /// AboutPage class inheriting from ContentPage.

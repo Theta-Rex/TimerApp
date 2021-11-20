@@ -1,8 +1,8 @@
-﻿// <copyright file="MainViewModel.cs" company="Theta Rex, Inc.">
+﻿// <copyright file="TimerViewModel.cs" company="Theta Rex, Inc.">
 //    Copyright © 2021 - Theta Rex, Inc.  All Rights Reserved.
 // </copyright>
 // <author>Joshua Kraskin</author>
-namespace TimerApp
+namespace TimerApp.ViewModels
 {
     using System;
     using System.Collections.ObjectModel;
@@ -11,7 +11,7 @@ namespace TimerApp
     /// <summary>
     /// MainViewModel class.
     /// </summary>
-    public class MainViewModel
+    public class TimerViewModel
     {
         /// <summary>
         /// The service provider.
@@ -19,21 +19,21 @@ namespace TimerApp
         private readonly IServiceProvider serviceProvider;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MainViewModel"/> class.
+        /// Initializes a new instance of the <see cref="TimerViewModel"/> class.
         /// </summary>
         /// <param name="serviceProvider">The DI container.</param>
-        public MainViewModel(IServiceProvider serviceProvider)
+        public TimerViewModel(IServiceProvider serviceProvider)
         {
             // Initialize the object.
             this.serviceProvider = serviceProvider;
 
             // Create a single timer using DI.
-            this.MyTimers.Add(serviceProvider.GetRequiredService<MyTimer>());
+            this.MyTimers.Add(serviceProvider.GetRequiredService<TimerItemViewModel>());
         }
 
         /// <summary>
         /// Gets a collection of MyTimers.
         /// </summary>
-        public ObservableCollection<MyTimer> MyTimers { get; } = new ObservableCollection<MyTimer>();
+        public ObservableCollection<TimerItemViewModel> MyTimers { get; } = new ObservableCollection<TimerItemViewModel>();
     }
 }

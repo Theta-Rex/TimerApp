@@ -1,27 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
-
+﻿// <copyright file="MainPage.xaml.cs" company="Theta Rex, Inc.">
+//    Copyright © 2021 - Theta Rex, Inc.  All Rights Reserved.
+// </copyright>
+// <author>Donald Airey</author>
 namespace TimerApp.UWP
 {
+    /// <summary>
+    /// Main page of the application.
+    /// </summary>
     public sealed partial class MainPage
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MainPage"/> class.
+        /// </summary>
         public MainPage()
         {
+            // Initialize the IDE compoents.
             this.InitializeComponent();
 
-            LoadApplication(new TimerApp.App());
+            // Load the application into the devices OS.
+            this.LoadApplication(new TimerApp.App());
         }
     }
 }

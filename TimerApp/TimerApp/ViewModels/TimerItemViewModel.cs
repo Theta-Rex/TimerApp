@@ -1,49 +1,23 @@
-﻿// <copyright file="MyTimer.cs" company="Theta Rex, Inc.">
+﻿// <copyright file="TimerItemViewModel.cs" company="Theta Rex, Inc.">
 //    Copyright © 2021 - Theta Rex, Inc.  All Rights Reserved.
 // </copyright>
 // <author>Joshua Kraskin</author>
 namespace TimerApp
 {
-    using Microsoft.Extensions.Localization;
-    using Microsoft.Extensions.Logging;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Globalization;
     using System.Timers;
     using System.Windows.Input;
+    using Microsoft.Extensions.Localization;
+    using Microsoft.Extensions.Logging;
     using Xamarin.Forms;
-
-    /// <summary>
-    /// Enum for LogType for each timer.
-    /// </summary>
-    public enum LogType
-    {
-        /// <summary>
-        /// Error.
-        /// </summary>
-        Error,
-
-        /// <summary>
-        /// Warning.
-        /// </summary>
-        Warning,
-
-        /// <summary>
-        /// Debug.
-        /// </summary>
-        Debug,
-
-        /// <summary>
-        /// Information.
-        /// </summary>
-        Information,
-    }
 
     /// <summary>
     /// MyTimer class creates an object for each Timer.
     /// </summary>
-    public class MyTimer : INotifyPropertyChanged, IDisposable
+    public class TimerItemViewModel : INotifyPropertyChanged, IDisposable
     {
         /// <summary>
         ///  The update interval of the timer.
@@ -53,7 +27,7 @@ namespace TimerApp
         /// <summary>
         /// System timer.
         /// </summary>
-        private readonly Timer timer = new Timer() { Interval = MyTimer.TimerInterval };
+        private readonly Timer timer = new Timer() { Interval = TimerItemViewModel.TimerInterval };
 
         private readonly ILogger logger;
 
@@ -71,19 +45,21 @@ namespace TimerApp
         private TimeSpan timeRemaining;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MyTimer"/> class.
+        /// Initializes a new instance of the <see cref="TimerItemViewModel"/> class.
         /// </summary>
-        public MyTimer(ILogger<MyTimer> logger, IStringLocalizer<MyTimer> stringLocalizer)
+        /// <param name="logger">The log device.</param>
+        /// <param name="stringLocalizer">Provides localized (internationalized) strings.</param>
+        public TimerItemViewModel(ILogger<TimerItemViewModel> logger, IStringLocalizer<TimerItemViewModel> stringLocalizer)
         {
             // Initialize the object.
             this.logger = logger;
             this.stringLocalizer = stringLocalizer;
             this.PlayPauseImage = "Assets/play.png";
-            this.LogTypes = new List<string>();
+            this.Severitys = new List<string>();
 
-            foreach (string s in Enum.GetNames(typeof(LogType)))
+            foreach (string s in Enum.GetNames(typeof(Severity)))
             {
-                this.LogTypes.Add(s);
+                this.Severitys.Add(s);
             }
 
             if (this.culture.Name.Equals("en-US"))
@@ -138,9 +114,9 @@ namespace TimerApp
         public bool IsRunning { get; set; }
 
         /// <summary>
-        /// Gets or sets list of LogTypes for picker.
+        /// Gets or sets list of Severitys for picker.
         /// </summary>
-        public List<string> LogTypes { get; set; }
+        public List<string> Severitys { get; set; }
 
         /// <summary>
         /// Gets or sets PlayPauseImage for propertychange.

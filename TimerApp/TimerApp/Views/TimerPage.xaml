@@ -1,0 +1,41 @@
+﻿<ContentPage x:Class="TimerApp.Views.TimerPage"
+			 x:DataType="timerapp:TimerViewModel"
+			 xmlns:timerapp="clr-namespace:TimerApp.ViewModels"
+			 Title="Timers"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 xmlns="http://xamarin.com/schemas/2014/forms">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" IconImageSource="assets/plus.png" Order="Primary" Priority="0"/>
+        <ToolbarItem Text="Edit" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView ItemsSource="{x:Binding MyTimers}"
+					  Style="{StaticResource ListViewStyle}">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="timerapp:MyTimer">
+                        <ViewCell>
+                            <Frame Style="{StaticResource TimerCardStyle}">
+                                <FlexLayout AlignItems="Center"
+											JustifyContent="SpaceBetween"
+											Padding="10, 0">
+                                    <Entry Keyboard="Numeric"
+										   Placeholder="Enter Seconds"
+										   Text="{x:Binding EntryTime}"/>
+                                    <ImageButton Command="{x:Binding StartTimer}"
+												 Source="{x:Binding PlayPauseImage}"/>
+                                    <Label FontSize="20"
+										   Text="{x:Binding TimeRemaining, StringFormat='{}{0:hh\\:mm\\:ss}'}"/>
+                                    <Picker ItemsSource="{x:Binding Severitys}"
+											SelectedItem="{x:Binding SelectedLogPicker}"/>
+                                    <Entry Placeholder="Log Message"
+                                           Text="{x:Binding EntryLog}"/>
+                                </FlexLayout>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

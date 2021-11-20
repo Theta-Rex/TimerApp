@@ -1,12 +1,14 @@
-﻿<ContentPage x:Class="TimerApp.AboutPage"
-			 Title="About"
-			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-			 xmlns="http://xamarin.com/schemas/2014/forms">
+﻿<ContentPage x:Class="TimerApp.Views.AboutPage"
+			 Title="{x:Binding Title}"
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:timerapp="clr-namespace:TimerApp.Views"
+             x:DataType="timerapp:AboutPage">
 	<ContentPage.Content>
 		<StackLayout>
 			<Label FontSize="Medium"
 				   HorizontalOptions="CenterAndExpand"
-				   Text="Welcome to TimerApp!"
+				   Text="{x:Binding Name}"
 				   VerticalOptions="CenterAndExpand"/>
 			<Image Source="Assets/timerlogo.png"/>
 			<Label HorizontalOptions="CenterAndExpand"

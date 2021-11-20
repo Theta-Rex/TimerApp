@@ -1,0 +1,24 @@
+﻿<ContentPage x:Class="TimerApp.Views.MasterPage"
+			 x:DataType="viewmodels:MasterViewModel"
+			 IconImageSource="hamburger.png"
+			 Title="Menu"
+			 xmlns:viewmodels="clr-namespace:TimerApp.ViewModels"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 xmlns="http://xamarin.com/schemas/2014/forms">
+	<StackLayout VerticalOptions="FillAndExpand">
+		<ListView HasUnevenRows="True"
+				  ItemsSource="{x:Binding MenuItems}"
+				  Margin="0,2">
+			<ListView.ItemTemplate>
+				<DataTemplate x:DataType="viewmodels:MenuItemViewModel">
+					<ViewCell>
+						<Button Command="{x:Binding Command}"
+								CommandParameter="{x:Binding CommandParameter}"
+								ImageSource="{x:Binding Image}"
+								Text="{x:Binding Label}"/>
+					</ViewCell>
+				</DataTemplate>
+			</ListView.ItemTemplate>
+		</ListView>
+	</StackLayout>
+</ContentPage>
