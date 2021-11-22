@@ -13,7 +13,7 @@
             <ListView ItemsSource="{x:Binding MyTimers}"
 					  Style="{StaticResource ListViewStyle}">
                 <ListView.ItemTemplate>
-                    <DataTemplate x:DataType="timerapp:MyTimer">
+                    <DataTemplate x:DataType="timerapp:TimerItemViewModel">
                         <ViewCell>
                             <Frame Style="{StaticResource TimerCardStyle}">
                                 <FlexLayout AlignItems="Center"

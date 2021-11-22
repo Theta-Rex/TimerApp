@@ -28,7 +28,7 @@ namespace TimerApp.ViewModels
             this.serviceProvider = serviceProvider;
 
             // Create a single timer using DI.
-            this.MyTimers.Add(serviceProvider.GetRequiredService<TimerItemViewModel>());
+            this.MyTimers.Add(this.serviceProvider.GetRequiredService<TimerItemViewModel>());
         }
 
         /// <summary>

@@ -2,7 +2,7 @@
 //    Copyright © 2021 - Theta Rex, Inc.  All Rights Reserved.
 // </copyright>
 // <author>Joshua Kraskin</author>
-namespace TimerApp
+namespace TimerApp.ViewModels
 {
     using System;
     using System.Collections.Generic;
@@ -33,8 +33,6 @@ namespace TimerApp
 
         private readonly IStringLocalizer stringLocalizer;
 
-        private CultureInfo culture = CultureInfo.CurrentCulture;
-
         private string playPauseImage;
 
         private string selectedLogPicker;
@@ -62,15 +60,6 @@ namespace TimerApp
                 this.Severitys.Add(s);
             }
 
-            //if (this.culture.Name.Equals("en-US"))
-            //{
-            //    this.CountdownFinishedText = $"Yo, your timer for {this.EntryTime} has completed!";
-            //}
-            //else if (this.culture.Name.Equals("en-CA"))
-            //{
-            //    this.CountdownFinishedText = $"Your timer for {this.EntryTime} expired, eh";
-            //}
-
             this.timer.Elapsed += (s, e) =>
                 {
                     this.TimeRemaining = this.EndTime - DateTime.Now;
@@ -78,7 +67,7 @@ namespace TimerApp
                     {
                         this.timer.Stop();
                         this.PlayPauseImage = "Assets/play.png";
-                        Device.BeginInvokeOnMainThread(() => App.Current.MainPage.DisplayAlert("Timer Complete", $"{TimerItemViewModelResources.stringLocalizer}", "OK", "Cancel"));
+                        Device.BeginInvokeOnMainThread(() => App.Current.MainPage.DisplayAlert("Timer Complete", $"{this.stringLocalizer["TimerExpired"]}", "OK", "Cancel"));
                     }
                 };
         }
