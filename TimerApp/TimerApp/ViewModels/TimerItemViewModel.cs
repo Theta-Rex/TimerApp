@@ -62,14 +62,14 @@ namespace TimerApp
                 this.Severitys.Add(s);
             }
 
-            if (this.culture.Name.Equals("en-US"))
-            {
-                this.CountdownFinishedText = $"Yo, your timer for {this.EntryTime} has completed!";
-            }
-            else if (this.culture.Name.Equals("en-CA"))
-            {
-                this.CountdownFinishedText = $"Your timer for {this.EntryTime} expired, eh";
-            }
+            //if (this.culture.Name.Equals("en-US"))
+            //{
+            //    this.CountdownFinishedText = $"Yo, your timer for {this.EntryTime} has completed!";
+            //}
+            //else if (this.culture.Name.Equals("en-CA"))
+            //{
+            //    this.CountdownFinishedText = $"Your timer for {this.EntryTime} expired, eh";
+            //}
 
             this.timer.Elapsed += (s, e) =>
                 {
@@ -78,7 +78,7 @@ namespace TimerApp
                     {
                         this.timer.Stop();
                         this.PlayPauseImage = "Assets/play.png";
-                        Device.BeginInvokeOnMainThread(() => App.Current.MainPage.DisplayAlert("Timer Complete", $"{this.CountdownFinishedText}", "OK", "Cancel"));
+                        Device.BeginInvokeOnMainThread(() => App.Current.MainPage.DisplayAlert("Timer Complete", $"{TimerItemViewModelResources.stringLocalizer}", "OK", "Cancel"));
                     }
                 };
         }
