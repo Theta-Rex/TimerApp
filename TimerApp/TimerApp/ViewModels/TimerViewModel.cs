@@ -11,7 +11,7 @@ namespace TimerApp.ViewModels
     /// <summary>
     /// MainViewModel class.
     /// </summary>
-    public class TimerViewModel
+    public class TimerViewModel : BaseViewModel
     {
         /// <summary>
         /// The service provider.

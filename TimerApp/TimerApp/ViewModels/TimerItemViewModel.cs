@@ -17,7 +17,7 @@ namespace TimerApp.ViewModels
     /// <summary>
     /// MyTimer class creates an object for each Timer.
     /// </summary>
-    public class TimerItemViewModel : INotifyPropertyChanged, IDisposable
+    public class TimerItemViewModel : BaseViewModel, IDisposable
     {
         /// <summary>
         ///  The update interval of the timer.
@@ -71,11 +71,6 @@ namespace TimerApp.ViewModels
                     }
                 };
         }
-
-        /// <summary>
-        /// used for IPropertyNotify.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>
         /// gets or sets text for DisplayAlert when countdonw completes.
@@ -190,12 +185,6 @@ namespace TimerApp.ViewModels
             {
                 this.timer.Dispose();
             }
-        }
-
-        /// <param name="property">used for propety change.</param>
-        private void OnPropertyChanged(string property)
-        {
-            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
         }
 
         /// <summary>

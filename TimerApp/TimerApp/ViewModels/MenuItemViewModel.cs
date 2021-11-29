@@ -11,7 +11,7 @@ namespace TimerApp.ViewModels
     /// <summary>
     /// View model for an item.
     /// </summary>
-    public class MenuItemViewModel : INotifyPropertyChanged
+    public class MenuItemViewModel : BaseViewModel
     {
         /// <summary>
         /// The image that appears in the manu item.
@@ -22,11 +22,6 @@ namespace TimerApp.ViewModels
         /// The text that appears in the menu item.
         /// </summary>
         private string label;
-
-        /// <summary>
-        /// used for IPropertyNotify.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>
         /// Gets or sets command that is executed when the item is pressed.
@@ -54,22 +49,6 @@ namespace TimerApp.ViewModels
         {
             get => this.label;
             set => this.SetProperty(ref this.label, value, nameof(this.Label));
-        }
-
-        /// <summary>
-        /// Notifies when a property's value has changed.
-        /// </summary>
-        /// <typeparam name="T">The type of the property.</typeparam>
-        /// <param name="backingStore">The previous value of the property.</param>
-        /// <param name="value">The new value of the property.</param>
-        /// <param name="propertyName">The property name.</param>
-        protected virtual void SetProperty<T>(ref T backingStore, T value, string propertyName)
-        {
-            if (!EqualityComparer<T>.Default.Equals(backingStore, value))
-            {
-                backingStore = value;
-                this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-            }
         }
     }
 }

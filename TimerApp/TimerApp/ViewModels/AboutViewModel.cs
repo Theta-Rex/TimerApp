@@ -9,7 +9,7 @@ namespace TimerApp.ViewModels
     /// <summary>
     /// Information about the application.
     /// </summary>
-    public class AboutViewModel
+    public class AboutViewModel : BaseViewModel
     {
         /// <summary>
         /// The string localizer.

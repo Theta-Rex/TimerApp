@@ -12,7 +12,7 @@ namespace TimerApp.ViewModels
     /// <summary>
     /// Information about the application.
     /// </summary>
-    public class MasterViewModel : INotifyPropertyChanged
+    public class MasterViewModel : BaseViewModel
     {
         /// <summary>
         /// Provides navigation for the view model.
@@ -45,11 +45,6 @@ namespace TimerApp.ViewModels
             this.Retry = this.stringLocalizer["RetryLabel"];
             this.ServiceNotRunning = this.stringLocalizer["ServiceNotRunningMessage"];
         }
-
-        /// <summary>
-        /// used for IPropertyNotify.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>
         /// Gets the text for the Exit button.
@@ -87,16 +82,6 @@ namespace TimerApp.ViewModels
         /// Gets the text for message that the service isn't running.
         /// </summary>
         public string ServiceNotRunning { get; }
-
-        /// <summary>
-        /// Handles a change to a property.
-        /// </summary>
-        /// <param name="property">The name of the property that has changed.</param>
-        private void OnPropertyChanged(string property)
-        {
-            // Make sure the property change handler is in place before invoking it.
-            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
-        }
 
         /// <summary>
         /// Sets the root of the master page.
