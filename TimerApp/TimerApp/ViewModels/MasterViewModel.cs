@@ -6,7 +6,6 @@ namespace TimerApp.ViewModels
 {
     using System;
     using System.Collections.ObjectModel;
-    using System.ComponentModel;
     using Microsoft.Extensions.Localization;
 
     /// <summary>
@@ -39,17 +38,7 @@ namespace TimerApp.ViewModels
             // Initialize the object.
             this.navigator = navigator;
             this.stringLocalizer = stringLocalizer;
-
-            // Localize the object.
-            this.Exit = this.stringLocalizer["ExitLabel"];
-            this.Retry = this.stringLocalizer["RetryLabel"];
-            this.ServiceNotRunning = this.stringLocalizer["ServiceNotRunningMessage"];
         }
-
-        /// <summary>
-        /// Gets the text for the Exit button.
-        /// </summary>
-        public string Exit { get; }
 
         /// <summary>
         /// Gets or sets a value indicating whether the master page is presented or not.
@@ -72,16 +61,6 @@ namespace TimerApp.ViewModels
         /// Gets the scenarios in the list view.
         /// </summary>
         public ObservableCollection<MenuItemViewModel> MenuItems { get; } = new ObservableCollection<MenuItemViewModel>();
-
-        /// <summary>
-        /// Gets the text for the Retry button.
-        /// </summary>
-        public string Retry { get; }
-
-        /// <summary>
-        /// Gets the text for message that the service isn't running.
-        /// </summary>
-        public string ServiceNotRunning { get; }
 
         /// <summary>
         /// Sets the root of the master page.

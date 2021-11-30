@@ -55,6 +55,9 @@ namespace TimerApp.ViewModels
             this.PlayPauseImage = "Assets/play.png";
             this.Severitys = new List<string>();
 
+            this.Exit = this.stringLocalizer["ExitLabel"];
+            this.Retry = this.stringLocalizer["RetryLabel"];
+
             foreach (string s in Enum.GetNames(typeof(Severity)))
             {
                 this.Severitys.Add(s);
@@ -67,7 +70,13 @@ namespace TimerApp.ViewModels
                     {
                         this.timer.Stop();
                         this.PlayPauseImage = "Assets/play.png";
-                        Device.BeginInvokeOnMainThread(() => App.Current.MainPage.DisplayAlert("Timer Complete", $"{this.stringLocalizer["TimerExpired"]}", "OK", "Cancel"));
+                        this.logger.LogError(this.stringLocalizer["TimerExpired"]);
+                        Device.BeginInvokeOnMainThread(
+                            () => App.Current.MainPage.DisplayAlert(
+                                this.stringLocalizer["Title"],
+                                this.stringLocalizer["TimerExpired"],
+                                this.stringLocalizer["Retry"],
+                                this.stringLocalizer["Cancel"]));
                     }
                 };
         }
@@ -93,9 +102,19 @@ namespace TimerApp.ViewModels
         public string EntryLog { get; set; }
 
         /// <summary>
+        /// Gets the text for the Exit button.
+        /// </summary>
+        public string Exit { get; }
+
+        /// <summary>
         /// Gets or sets a value indicating whether IsRunning is true.
         /// </summary>
         public bool IsRunning { get; set; }
+
+        /// <summary>
+        /// Gets the text for the Retry button.
+        /// </summary>
+        public string Retry { get; }
 
         /// <summary>
         /// Gets or sets list of Severitys for picker.

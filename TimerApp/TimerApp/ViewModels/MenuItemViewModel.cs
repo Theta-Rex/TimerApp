@@ -4,8 +4,6 @@
 // <author>Donald Roy Airey</author>
 namespace TimerApp.ViewModels
 {
-    using System.Collections.Generic;
-    using System.ComponentModel;
     using System.Windows.Input;
 
     /// <summary>

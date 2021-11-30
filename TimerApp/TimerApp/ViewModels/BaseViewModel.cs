@@ -2,13 +2,10 @@
 //    Copyright © 2021 - Theta Rex, Inc.  All Rights Reserved.
 // </copyright>
 // <author>Joshua Kraskin</author>
-
 namespace TimerApp.ViewModels
 {
-    using System;
     using System.Collections.Generic;
     using System.ComponentModel;
-    using System.Text;
 
     /// <summary>
     /// BaseVidewModel class abstracts INotifyPropertyChanged for viewmodels.

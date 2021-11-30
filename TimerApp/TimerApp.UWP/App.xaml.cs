@@ -32,13 +32,6 @@ namespace TimerApp.UWP
         /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
-#if DEBUG
-            if (System.Diagnostics.Debugger.IsAttached)
-            {
-                this.DebugSettings.EnableFrameRateCounter = true;
-            }
-#endif
-
             Frame rootFrame = Window.Current.Content as Frame;
 
             // Do not repeat app initialization when the Window already has content,
@@ -50,11 +43,6 @@ namespace TimerApp.UWP
 
                 rootFrame.NavigationFailed += this.OnNavigationFailed;
                 Xamarin.Forms.Forms.Init(e);
-
-                // [TODO] Load state from previously suspended application
-                if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
-                {
-                }
 
                 // Place the frame in the current Window
                 Window.Current.Content = rootFrame;
@@ -75,8 +63,8 @@ namespace TimerApp.UWP
         /// <summary>
         /// Invoked when Navigation to a certain page fails.
         /// </summary>
-        /// <param name="sender">The Frame which failed navigation</param>
-        /// <param name="e">Details about the navigation failure</param>
+        /// <param name="sender">The Frame which failed navigation.</param>
+        /// <param name="e">Details about the navigation failure.</param>
         private void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
         {
             throw new Exception("Failed to load Page " + e.SourcePageType.FullName);
