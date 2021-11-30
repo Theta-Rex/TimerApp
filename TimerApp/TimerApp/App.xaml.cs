@@ -81,6 +81,10 @@ namespace TimerApp
             TelemetryOptions telemetryOptions = configuration.GetSection("Telemetry").Get<TelemetryOptions>();
             if (telemetryOptions != null && telemetryOptions.InstrumentationKey != null)
             {
+                loggingBuilder.AddApplicationInsights(telemetryOptions.InstrumentationKey);
+            }
+            else
+            {
                 loggingBuilder.AddConsole();
             }
         }

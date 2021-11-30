@@ -6,7 +6,6 @@ namespace TimerApp.ViewModels
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
     using System.Globalization;
     using System.Timers;
     using System.Windows.Input;
@@ -55,9 +54,6 @@ namespace TimerApp.ViewModels
             this.PlayPauseImage = "Assets/play.png";
             this.Severitys = new List<string>();
 
-            this.Exit = this.stringLocalizer["ExitLabel"];
-            this.Retry = this.stringLocalizer["RetryLabel"];
-
             foreach (string s in Enum.GetNames(typeof(Severity)))
             {
                 this.Severitys.Add(s);
@@ -102,19 +98,9 @@ namespace TimerApp.ViewModels
         public string EntryLog { get; set; }
 
         /// <summary>
-        /// Gets the text for the Exit button.
-        /// </summary>
-        public string Exit { get; }
-
-        /// <summary>
         /// Gets or sets a value indicating whether IsRunning is true.
         /// </summary>
         public bool IsRunning { get; set; }
-
-        /// <summary>
-        /// Gets the text for the Retry button.
-        /// </summary>
-        public string Retry { get; }
 
         /// <summary>
         /// Gets or sets list of Severitys for picker.
