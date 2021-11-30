@@ -58,7 +58,7 @@ namespace TimerApp.ViewModels
             {
                 this.Severitys.Add(s);
             }
-
+            var result = false;
             this.timer.Elapsed += (s, e) =>
                 {
                     this.TimeRemaining = this.EndTime - DateTime.Now;
@@ -67,12 +67,22 @@ namespace TimerApp.ViewModels
                         this.timer.Stop();
                         this.PlayPauseImage = "Assets/play.png";
                         this.logger.LogError(this.stringLocalizer["TimerExpired"]);
+                        //this.DisplayAlert();
                         Device.BeginInvokeOnMainThread(
-                            () => App.Current.MainPage.DisplayAlert(
-                                this.stringLocalizer["Title"],
-                                this.stringLocalizer["TimerExpired"],
-                                this.stringLocalizer["Retry"],
-                                this.stringLocalizer["Cancel"]));
+                             () => this.DisplayAlert());
+                        //     App.Current.MainPage.DisplayAlert(
+                        //        this.stringLocalizer["Title"],
+                        //        this.stringLocalizer["TimerExpired"],
+                        //        this.stringLocalizer["Retry"],
+                        //        this.stringLocalizer["Cancel"]));
+                        //if (result)
+                        //{
+                        //    System.Diagnostics.Debug.WriteLine("Retry");
+                        //}
+                        //else
+                        //{
+                        //    System.Diagnostics.Debug.WriteLine("Cancel");
+                        //}
                     }
                 };
         }
@@ -202,6 +212,20 @@ namespace TimerApp.ViewModels
             this.EndTime = DateTime.Now + TimeSpan.FromSeconds(int.Parse(this.EntryTime, CultureInfo.InvariantCulture));
             this.TimeRemaining = this.EndTime - DateTime.Now;
             this.timer.Start();
+        }
+
+        private async void DisplayAlert()
+        {
+            var response = await App.Current.MainPage.DisplayAlert(this.stringLocalizer["Title"], this.stringLocalizer["TimerExpired"], this.stringLocalizer["Retry"], this.stringLocalizer["Cancel"]);
+            if (response)
+            {
+                System.Diagnostics.Debug.WriteLine("Retry");
+                this.StartTimerHandler();
+            }
+            else
+            {
+                System.Diagnostics.Debug.WriteLine("Cancel");
+            }
         }
     }
 }
