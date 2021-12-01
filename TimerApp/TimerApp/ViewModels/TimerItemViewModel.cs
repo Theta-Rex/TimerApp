@@ -58,7 +58,7 @@ namespace TimerApp.ViewModels
             {
                 this.Severitys.Add(s);
             }
-            var result = false;
+
             this.timer.Elapsed += (s, e) =>
                 {
                     this.TimeRemaining = this.EndTime - DateTime.Now;
@@ -67,22 +67,8 @@ namespace TimerApp.ViewModels
                         this.timer.Stop();
                         this.PlayPauseImage = "Assets/play.png";
                         this.logger.LogError(this.stringLocalizer["TimerExpired"]);
-                        //this.DisplayAlert();
                         Device.BeginInvokeOnMainThread(
                              () => this.DisplayAlert());
-                        //     App.Current.MainPage.DisplayAlert(
-                        //        this.stringLocalizer["Title"],
-                        //        this.stringLocalizer["TimerExpired"],
-                        //        this.stringLocalizer["Retry"],
-                        //        this.stringLocalizer["Cancel"]));
-                        //if (result)
-                        //{
-                        //    System.Diagnostics.Debug.WriteLine("Retry");
-                        //}
-                        //else
-                        //{
-                        //    System.Diagnostics.Debug.WriteLine("Cancel");
-                        //}
                     }
                 };
         }

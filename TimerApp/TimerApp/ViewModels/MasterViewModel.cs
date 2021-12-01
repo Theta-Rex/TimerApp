@@ -6,7 +6,9 @@ namespace TimerApp.ViewModels
 {
     using System;
     using System.Collections.ObjectModel;
+    using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Localization;
+    using TimerApp.Views;
 
     /// <summary>
     /// Information about the application.
@@ -24,6 +26,11 @@ namespace TimerApp.ViewModels
         private readonly IStringLocalizer<MasterViewModel> stringLocalizer;
 
         /// <summary>
+        /// The service provider.
+        /// </summary>
+        private readonly IServiceProvider serviceProvider;
+
+        /// <summary>
         /// A value indicating whether the master page is presented or not.
         /// </summary>
         private bool isPresented;
@@ -33,11 +40,17 @@ namespace TimerApp.ViewModels
         /// </summary>
         /// <param name="navigator">Provides navigation for the view model.</param>
         /// <param name="stringLocalizer">The string localizer.</param>
-        public MasterViewModel(Navigator navigator, IStringLocalizer<MasterViewModel> stringLocalizer)
+        /// <param name="serviceProvider">The DI container.</param>
+        public MasterViewModel(Navigator navigator, IStringLocalizer<MasterViewModel> stringLocalizer, IServiceProvider serviceProvider)
         {
             // Initialize the object.
             this.navigator = navigator;
             this.stringLocalizer = stringLocalizer;
+            this.serviceProvider = serviceProvider;
+
+            // this.MenuItems.Add(this.serviceProvider.GetRequiredService<MenuItemViewModel>());
+            this.MenuItems.Add(new MenuItemViewModel("assets/timerlogo.png", "Timer Page", navigator, typeof(TimerPage)));
+            this.MenuItems.Add(new MenuItemViewModel("assets/about.png", "About Page", navigator, typeof(AboutPage)));
         }
 
         /// <summary>

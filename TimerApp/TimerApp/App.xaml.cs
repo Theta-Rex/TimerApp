@@ -53,6 +53,7 @@ namespace TimerApp
                 .AddTransient<AboutPage>()
                 .AddTransient<MainPage>()
                 .AddTransient<MasterPage>()
+                .AddTransient<MenuItemViewModel>()
                 .AddTransient<Navigator>()
                 .AddTransient<TimerPage>()
                 .AddLocalization()

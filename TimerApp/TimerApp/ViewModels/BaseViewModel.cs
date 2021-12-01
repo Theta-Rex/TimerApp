@@ -10,7 +10,7 @@ namespace TimerApp.ViewModels
     /// <summary>
     /// BaseVidewModel class abstracts INotifyPropertyChanged for viewmodels.
     /// </summary>
-    public class BaseViewModel : INotifyPropertyChanged
+    public class BaseViewModel : Navigator, INotifyPropertyChanged
     {
         /// <summary>
         /// Required event for INotifyPropertyChanged interface.
