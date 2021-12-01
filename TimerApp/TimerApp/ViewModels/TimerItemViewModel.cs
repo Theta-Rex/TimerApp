@@ -66,7 +66,7 @@ namespace TimerApp.ViewModels
                     {
                         this.timer.Stop();
                         this.PlayPauseImage = "Assets/play.png";
-                        this.logger.LogError(this.stringLocalizer["TimerExpired"]);
+                        this.logger.LogError("GIANTS RULE ELI 4 EVA");
                         Device.BeginInvokeOnMainThread(
                              () => this.DisplayAlert());
                     }
