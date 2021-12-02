@@ -5,6 +5,8 @@
     using System.Text;
     using System.Collections.ObjectModel;
     using Microsoft.Extensions.DependencyInjection;
+    using System.Windows.Input;
+    using Xamarin.Forms;
 
     public class LandingViewModel : BaseViewModel
     {
@@ -14,9 +16,18 @@
         /// </summary>
         private readonly IServiceProvider serviceProvider;
 
-        public LandingViewModel(IServiceProvider serviceProvider)
+        /// <summary>
+        /// The service provider.
+        /// </summary>
+        private readonly Navigator navigator;
+
+        public LandingViewModel(IServiceProvider serviceProvider, Navigator navigator)
         {
-            this.serviceProvider = serviceProvider;
+            this.navigator = navigator;
         }
+
+        public ICommand NavigateToTimerPage => new Command(o => this.navigator.SetRoot(typeof(TimerViewModel)));
+
+
     }
 }

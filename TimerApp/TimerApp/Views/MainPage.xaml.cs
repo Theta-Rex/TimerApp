@@ -15,7 +15,7 @@ namespace TimerApp.Views
         /// <summary>
         /// The view model.
         /// </summary>
-        private readonly LandingViewModel landingViewModel;
+        private readonly TimerViewModel timerViewModel;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MainPage"/> class.
@@ -47,7 +47,7 @@ namespace TimerApp.Views
             }
 
             // Provide a view model for the page.
-            this.BindingContext = this.landingViewModel = landingViewModel;
+            this.BindingContext = this.timerViewModel = timerViewModel;
 
             // Set the main landing page for the application.
             this.Detail = new NavigationPage(landingPage);

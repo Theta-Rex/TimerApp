@@ -47,6 +47,7 @@ namespace TimerApp
             // Build the Dependency Injection container.
             this.serviceProvider = new ServiceCollection()
                 .AddTransient<AboutViewModel>()
+                .AddTransient<LandingViewModel>()
                 .AddTransient<MasterViewModel>()
                 .AddTransient<TimerViewModel>()
                 .AddTransient<TimerItemViewModel>()

@@ -6,10 +6,8 @@
 			 xmlns="http://xamarin.com/schemas/2014/forms">
 	<ContentPage.Content>
 		<StackLayout>
-			<Label HorizontalOptions="CenterAndExpand"
-				   Text="Landing Page"
-				   VerticalOptions="CenterAndExpand"/>
-            <Button Text="Go to Timer Page"/>
+			<Label Text="Landing Page"/>
+            <Button Text="Go to Timer Page" Command="{x:Binding NavigateToTimerPage}"/>
         </StackLayout>
 	</ContentPage.Content>
 </ContentPage>
