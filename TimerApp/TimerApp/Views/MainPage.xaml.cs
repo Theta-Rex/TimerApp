@@ -15,7 +15,7 @@ namespace TimerApp.Views
         /// <summary>
         /// The view model.
         /// </summary>
-        private readonly TimerViewModel timerViewModel;
+        private readonly LandingViewModel landingViewModel;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MainPage"/> class.
@@ -27,10 +27,12 @@ namespace TimerApp.Views
         /// <param name="timerViewModel">The main view model.</param>
         public MainPage(
             AboutPage aboutPage,
+            LandingPage landingPage,
             MasterPage masterPage,
             Navigator navigator,
             TimerPage timerPage,
-            TimerViewModel timerViewModel)
+            TimerViewModel timerViewModel,
+            LandingViewModel landingViewModel)
         {
             // Initialize the object.
             this.Flyout = masterPage;
@@ -45,20 +47,15 @@ namespace TimerApp.Views
             }
 
             // Provide a view model for the page.
-            this.BindingContext = this.timerViewModel = timerViewModel;
+            this.BindingContext = this.landingViewModel = landingViewModel;
 
             // Set the main landing page for the application.
-            this.Detail = new NavigationPage(timerPage);
+            this.Detail = new NavigationPage(landingPage);
 
             // Initialize the navigator to select the proper view based on the view model.
             navigator.Navigation = this.Detail.Navigation;
             navigator.PageMap.Add(typeof(AboutViewModel), aboutPage);
             navigator.PageMap.Add(typeof(TimerViewModel), timerPage);
-            //System.Diagnostics.Debug.WriteLine(navigator.PageMap.Values);
-            foreach (var pair in navigator.PageMap)
-            {
-                System.Diagnostics.Debug.Write($"FROM MAIN PAGE Key:{pair.Key} and Value: {pair.Value}");
-            }
         }
     }
 }

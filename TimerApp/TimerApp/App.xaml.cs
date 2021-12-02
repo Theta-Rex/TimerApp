@@ -51,6 +51,7 @@ namespace TimerApp
                 .AddTransient<TimerViewModel>()
                 .AddTransient<TimerItemViewModel>()
                 .AddTransient<AboutPage>()
+                .AddTransient<LandingPage>()
                 .AddTransient<MainPage>()
                 .AddTransient<MasterPage>()
                 .AddTransient<MenuItemViewModel>()
