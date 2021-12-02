@@ -4,6 +4,7 @@
 // <author>Donald Airey</author>
 namespace TimerApp.Views
 {
+    using TimerApp.ViewModels;
     using Xamarin.Forms;
 
     /// <summary>
@@ -14,10 +15,11 @@ namespace TimerApp.Views
         /// <summary>
         /// Initializes a new instance of the <see cref="TimerPage"/> class.
         /// </summary>
-        public TimerPage()
+        public TimerPage(TimerViewModel timerViewModel)
         {
             // Initialize the object.
             this.InitializeComponent();
+            this.BindingContext = timerViewModel;
         }
     }
 }

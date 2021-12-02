@@ -4,6 +4,7 @@
 // <author>Joshua Kraskin</author>
 namespace TimerApp.Views
 {
+    using TimerApp.ViewModels;
     using Xamarin.Forms;
 
     /// <summary>
@@ -14,9 +15,10 @@ namespace TimerApp.Views
         /// <summary>
         /// Initializes a new instance of the <see cref="LandingPage"/> class.
         /// </summary>
-        public LandingPage()
+        public LandingPage(LandingViewModel landingViewModel)
         {
             this.InitializeComponent();
+            this.BindingContext = landingViewModel;
         }
     }
 }

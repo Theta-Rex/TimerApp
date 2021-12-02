@@ -69,6 +69,6 @@ namespace TimerApp.ViewModels
         /// <summary>
         /// Gets the commend whene on the menu item.
         /// </summary>
-        public ICommand Command => new Command(o => this.navigator.Push(this.type));
+        public ICommand Command => new Command(o => this.navigator.SetRoot(this.type));
     }
 }

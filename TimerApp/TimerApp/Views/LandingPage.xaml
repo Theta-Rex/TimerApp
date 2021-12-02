@@ -1,12 +1,12 @@
 ﻿<ContentPage x:Class="TimerApp.Views.LandingPage"
-			 x:DataType="viewModels:LandingViewModel"
+			 x:DataType="viewmodels:LandingViewModel"
+			 xmlns:viewmodels="clr-namespace:TimerApp.ViewModels"
 			 Title="Landing Page"
-			 xmlns:viewModels="clr-namespace:TimerApp.ViewModels"
 			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 			 xmlns="http://xamarin.com/schemas/2014/forms">
 	<ContentPage.Content>
 		<StackLayout>
-			<Label Text="Landing Page"/>
+			<Label Text="{x:Binding ButtonText}"/>
             <Button Text="Go to Timer Page" Command="{x:Binding NavigateToTimerPage}"/>
         </StackLayout>
 	</ContentPage.Content>
