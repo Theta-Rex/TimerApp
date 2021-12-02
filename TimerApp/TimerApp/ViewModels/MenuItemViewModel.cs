@@ -5,7 +5,6 @@
 namespace TimerApp.ViewModels
 {
     using System;
-    using System.Threading.Tasks;
     using System.Windows.Input;
     using Xamarin.Forms;
 
@@ -15,9 +14,14 @@ namespace TimerApp.ViewModels
     public class MenuItemViewModel : BaseViewModel
     {
         /// <summary>
+        /// The type corresponding to the ViewModel that's passed to PageMap as a key.
+        /// </summary>
+        private readonly Type type;
+
+        /// <summary>
         /// Provides navigation for the view model.
         /// </summary>
-        private readonly Navigator navigator;
+        private Navigator navigator;
 
         /// <summary>
         /// The image that appears in the manu item.
@@ -29,13 +33,13 @@ namespace TimerApp.ViewModels
         /// </summary>
         private string label;
 
-        private Type type;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="MenuItemViewModel"/> class.
         /// </summary>
         /// <param name="image">The image for the menu item.</param>
         /// <param name="label">The label for the menu item.</param>
+        /// <param name="navigator">Mediates navigation between pages.</param>
+        /// <param name="type">The type corresponding to the ViewModel that's passed to PageMap as a key.</param>
         public MenuItemViewModel(string image, string label, Navigator navigator, Type type)
         {
             this.image = image;
@@ -43,26 +47,6 @@ namespace TimerApp.ViewModels
             this.navigator = navigator;
             this.type = type;
         }
-
-        /// <summary>
-        /// Gets or sets command that is executed when the item is pressed.
-        /// </summary>
-        public ICommand Command => new Command(o => this.NavigateHandlerAsync());
-
-        private void NavigateHandlerAsync()
-        {
-            this.Push(this.type);
-            // this.SetRoot(this.type);
-
-            //var page = new NavigationPage(Activator.CreateInstance(this.type) as Page);
-            //this.navigator.Navigation.PushAsync(page);
-
-        }
-
-        /// <summary>
-        /// Gets or sets command that is executed when the item is pressed.
-        /// </summary>
-        public object CommandParameter { get; set; }
 
         /// <summary>
         /// Gets or sets the image on the menu item.
@@ -81,5 +65,10 @@ namespace TimerApp.ViewModels
             get => this.label;
             set => this.SetProperty(ref this.label, value, nameof(this.Label));
         }
+
+        /// <summary>
+        /// Gets the commend whene on the menu item.
+        /// </summary>
+        public ICommand Command => new Command(o => this.navigator.SetRoot(this.type));
     }
 }

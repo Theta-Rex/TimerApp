@@ -54,6 +54,11 @@ namespace TimerApp.Views
             navigator.Navigation = this.Detail.Navigation;
             navigator.PageMap.Add(typeof(AboutViewModel), aboutPage);
             navigator.PageMap.Add(typeof(TimerViewModel), timerPage);
+            //System.Diagnostics.Debug.WriteLine(navigator.PageMap.Values);
+            foreach (var pair in navigator.PageMap)
+            {
+                System.Diagnostics.Debug.Write($"FROM MAIN PAGE Key:{pair.Key} and Value: {pair.Value}");
+            }
         }
     }
 }

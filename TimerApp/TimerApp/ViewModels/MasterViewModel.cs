@@ -49,8 +49,8 @@ namespace TimerApp.ViewModels
             this.serviceProvider = serviceProvider;
 
             // this.MenuItems.Add(this.serviceProvider.GetRequiredService<MenuItemViewModel>());
-            this.MenuItems.Add(new MenuItemViewModel("assets/timerlogo.png", "Timer Page", navigator, typeof(TimerPage)));
-            this.MenuItems.Add(new MenuItemViewModel("assets/about.png", "About Page", navigator, typeof(AboutPage)));
+            this.MenuItems.Add(new MenuItemViewModel("assets/timerlogo.png", "Timer Page", navigator, typeof(TimerViewModel)));
+            this.MenuItems.Add(new MenuItemViewModel("assets/about.png", "About Page", navigator, typeof(AboutViewModel)));
         }
 
         /// <summary>

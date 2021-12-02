@@ -54,7 +54,7 @@ namespace TimerApp
                 .AddTransient<MainPage>()
                 .AddTransient<MasterPage>()
                 .AddTransient<MenuItemViewModel>()
-                .AddTransient<Navigator>()
+                .AddSingleton<Navigator>()
                 .AddTransient<TimerPage>()
                 .AddLocalization()
                 .AddLogging(loggingBuilder => App.BuildLog(configuration, loggingBuilder))
