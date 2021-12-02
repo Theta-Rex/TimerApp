@@ -26,8 +26,6 @@
             this.navigator = navigator;
         }
 
-        public ICommand NavigateToTimerPage => new Command(o => this.navigator.SetRoot(typeof(TimerViewModel)));
-
-
+        public ICommand NavigateToTimerPage => new Command(o => this.navigator.Push(typeof(TimerViewModel)));
     }
 }

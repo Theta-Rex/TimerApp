@@ -2,6 +2,9 @@
 //    Copyright © 2021 - Theta Rex, Inc.  All Rights Reserved.
 // </copyright>
 // <author>Joshua Kraskin</author>
+using System.Windows.Input;
+using Xamarin.Forms;
+
 namespace TimerApp.ViewModels
 {
     using System;
@@ -29,13 +32,16 @@ namespace TimerApp.ViewModels
 
             // Create a single timer using DI.
             this.MyTimers.Add(this.serviceProvider.GetRequiredService<TimerItemViewModel>());
-            System.Diagnostics.Debug.WriteLine("TIMERVIEWMODEL CONSTRUCTED");
-            System.Diagnostics.Debug.WriteLine(this.MyTimers.Count);
         }
 
         /// <summary>
         /// Gets a collection of MyTimers.
         /// </summary>
         public ObservableCollection<TimerItemViewModel> MyTimers { get; } = new ObservableCollection<TimerItemViewModel>();
+
+        /// <summary>
+        /// Gets command to add new timer to MyTimers.
+        /// </summary>
+        public ICommand AddTimer => new Command(o => this.MyTimers.Add(this.serviceProvider.GetRequiredService<TimerItemViewModel>()));
     }
 }
