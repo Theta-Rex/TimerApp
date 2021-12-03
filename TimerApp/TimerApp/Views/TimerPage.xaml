@@ -4,38 +4,61 @@
 			 Title="Timers"
 			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 			 xmlns="http://xamarin.com/schemas/2014/forms">
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add" Command="{x:Binding AddTimer}" IconImageSource="assets/plus.png" Order="Primary" Priority="0"/>
-        <ToolbarItem Text="Edit" />
-    </ContentPage.ToolbarItems>
-    <ContentPage.Content>
-        <StackLayout>
-            <ListView ItemsSource="{x:Binding MyTimers}"
+	<ContentPage.ToolbarItems>
+		<ToolbarItem Command="{x:Binding AddTimer}"
+					 IconImageSource="assets/plus.png"
+					 Order="Primary"
+					 Priority="0"
+					 Text="Add"/>
+		<ToolbarItem Text="Edit"/>
+	</ContentPage.ToolbarItems>
+	<ContentPage.Content>
+		<StackLayout>
+			<ListView ItemsSource="{x:Binding MyTimers}"
 					  Style="{StaticResource ListViewStyle}">
-                <ListView.ItemTemplate>
-                    <DataTemplate x:DataType="timerapp:TimerItemViewModel">
-                        <ViewCell>
-                            <Frame Style="{StaticResource TimerCardStyle}">
-                                <FlexLayout AlignItems="Center"
-											JustifyContent="SpaceBetween"
-											Padding="10, 0">
-                                    <Entry Keyboard="Numeric"
+				<ListView.ItemTemplate>
+					<DataTemplate x:DataType="timerapp:TimerItemViewModel">
+						<ViewCell>
+							<Frame Style="{StaticResource TimerCardStyle}">
+								<Grid>
+									<Grid.RowDefinitions>
+										<RowDefinition Height="AUTO"/>
+										<RowDefinition Height="AUTO"/>
+									</Grid.RowDefinitions>
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="*"/>
+										<ColumnDefinition Width="*"/>
+										<ColumnDefinition Width="*"/>
+									</Grid.ColumnDefinitions>
+
+									<Entry Grid.Column="0"
+										   Grid.Row="0"
+										   Keyboard="Numeric"
 										   Placeholder="Enter Seconds"
 										   Text="{x:Binding EntryTime}"/>
-                                    <ImageButton Command="{x:Binding StartTimer}"
+									<ImageButton Command="{x:Binding StartTimer}"
+												 Grid.Column="1"
+												 Grid.Row="0"
 												 Source="{x:Binding PlayPauseImage}"/>
-                                    <Label FontSize="20"
+									<Label FontSize="20"
+										   Grid.Column="2"
+										   Grid.Row="0"
 										   Text="{x:Binding TimeRemaining, StringFormat='{}{0:hh\\:mm\\:ss}'}"/>
-                                    <Picker ItemsSource="{x:Binding Severitys}"
+									<Picker Grid.Column="0"
+											Grid.Row="1"
+											ItemsSource="{x:Binding Severitys}"
 											SelectedItem="{x:Binding SelectedLogPicker}"/>
-                                    <Entry Placeholder="Log Message"
-                                           Text="{x:Binding EntryLog}"/>
-                                </FlexLayout>
-                            </Frame>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </StackLayout>
-    </ContentPage.Content>
+									<Entry Grid.Column="1"
+                                           Grid.ColumnSpan="2"
+										   Grid.Row="1"
+										   Placeholder="Log Message"
+										   Text="{x:Binding EntryLog}"/>
+								</Grid>
+							</Frame>
+						</ViewCell>
+					</DataTemplate>
+				</ListView.ItemTemplate>
+			</ListView>
+		</StackLayout>
+	</ContentPage.Content>
 </ContentPage>
