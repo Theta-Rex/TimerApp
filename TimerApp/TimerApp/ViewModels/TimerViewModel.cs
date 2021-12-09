@@ -70,19 +70,8 @@ namespace TimerApp.ViewModels
         public ICommand AddTimer => new Command(o => this.MyTimers.Add(this.serviceProvider.GetRequiredService<TimerItemViewModel>()));
 
         /// <summary>
-        /// Gets command to Delete timer.
-        /// </summary>
-        public ICommand DeleteTimer => new Command(o => this.DeleteTimerHandler());
-
-        /// <summary>
         /// Gets command to Delete timer using button on toolbar.
         /// </summary>
         public ICommand DeleteFromToolbar => new Command(o => this.MyTimers.Remove(this.SelectedTimer));
-
-        private void DeleteTimerHandler()
-        {
-            //// TimerItemViewModel t = this.serviceProvider.GetRequiredService<TimerItemViewModel>();
-            // this.MyTimers.Remove(this.SelectedTimer);
-        }
     }
 }

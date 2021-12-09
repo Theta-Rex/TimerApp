@@ -49,10 +49,6 @@
 										   Grid.Column="2"
 										   Grid.Row="0"
 										   Text="{x:Binding TimeRemaining, StringFormat='{}{0:hh\\:mm\\:ss}'}"/>
-                                    <ImageButton Command="{Binding Path=BindingContext.DeleteTimer, Source={x:Reference TimerList}}"
-												 Grid.Column="3"
-												 Grid.Row="0"
-												 Source="assets/delete.png"/>
                                     <Picker Grid.Column="0"
 											Grid.Row="1"
 											ItemsSource="{x:Binding Severitys}"
