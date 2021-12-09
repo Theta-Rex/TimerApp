@@ -53,6 +53,8 @@ namespace TimerApp.ViewModels
             this.stringLocalizer = stringLocalizer;
             this.PlayPauseImage = "Assets/play.png";
             this.Severitys = new List<string>();
+            this.InstanceID = Guid.NewGuid();
+            System.Diagnostics.Debug.WriteLine(this.InstanceID);
 
             foreach (string s in Enum.GetNames(typeof(Severity)))
             {
@@ -92,6 +94,11 @@ namespace TimerApp.ViewModels
         /// gets or sets EntryLog, which is the message the user enters to be logged.
         /// </summary>
         public string EntryLog { get; set; }
+
+        /// <summary>
+        /// Gets or sets GUID.
+        /// </summary>
+        public Guid InstanceID { get;  set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether IsRunning is true.

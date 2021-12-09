@@ -15,6 +15,7 @@ namespace TimerApp.Views
         /// <summary>
         /// Initializes a new instance of the <see cref="AboutPage"/> class.
         /// </summary>
+        /// <param name="aboutViewModel">Aboutviewmodel.</param>
         public AboutPage(AboutViewModel aboutViewModel)
         {
             this.InitializeComponent();

@@ -15,6 +15,7 @@ namespace TimerApp.Views
         /// <summary>
         /// Initializes a new instance of the <see cref="TimerPage"/> class.
         /// </summary>
+        /// <param name="timerViewModel">The timer view model.</param>
         public TimerPage(TimerViewModel timerViewModel)
         {
             // Initialize the object.
