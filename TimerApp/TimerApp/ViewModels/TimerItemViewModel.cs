@@ -200,11 +200,21 @@ namespace TimerApp.ViewModels
         /// </summary>
         private void StartTimerHandler()
         {
-            this.IsRunning = true;
-            this.PlayPauseImage = "Assets/stop.png";
-            this.EndTime = DateTime.Now + TimeSpan.FromSeconds(int.Parse(this.EntryTime, CultureInfo.InvariantCulture));
-            this.TimeRemaining = this.EndTime - DateTime.Now;
-            this.timer.Start();
+            if (!this.IsRunning)
+            {
+                this.PlayPauseImage = "Assets/stop.png";
+                this.EndTime = DateTime.Now + TimeSpan.FromSeconds(int.Parse(this.EntryTime, CultureInfo.InvariantCulture));
+                this.TimeRemaining = this.EndTime - DateTime.Now;
+                this.timer.Start();
+                this.IsRunning = true;
+            }
+            else if (this.IsRunning)
+            {
+                this.timer.Stop();
+                this.PlayPauseImage = "Assets/play.png";
+                this.IsRunning = false;
+
+            }
         }
 
         private async void DisplayAlert()
