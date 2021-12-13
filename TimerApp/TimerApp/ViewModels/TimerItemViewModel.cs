@@ -96,6 +96,11 @@ namespace TimerApp.ViewModels
         public string EntryLog { get; set; }
 
         /// <summary>
+        /// gets or sets Id.
+        /// </summary>
+        public int Id { get; set; }
+
+        /// <summary>
         /// Gets or sets GUID.
         /// </summary>
         public Guid InstanceID { get;  set; }
@@ -149,9 +154,19 @@ namespace TimerApp.ViewModels
         public DateTime StartTime { get; set; }
 
         /// <summary>
+        /// gets or sets SeverityId.
+        /// </summary>
+        public int SeverityId { get; set; }
+
+        /// <summary>
         /// gets or sets TimerName (not currently used).
         /// </summary>
         public string TimerName { get; set; }
+
+        /// <summary>
+        /// gets or sets UserId.
+        /// </summary>
+        public int UserId { get; set; }
 
         /// <summary>
         /// gets or sets TimeRemaining for propertychange.
@@ -213,7 +228,6 @@ namespace TimerApp.ViewModels
                 this.timer.Stop();
                 this.PlayPauseImage = "Assets/play.png";
                 this.IsRunning = false;
-
             }
         }
 

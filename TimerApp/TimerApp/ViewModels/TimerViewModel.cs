@@ -8,6 +8,7 @@ namespace TimerApp.ViewModels
     using System.Collections.ObjectModel;
     using System.Windows.Input;
     using Microsoft.Extensions.DependencyInjection;
+    using TimerApp.Services;
     using Xamarin.Forms;
 
     /// <summary>
@@ -20,6 +21,8 @@ namespace TimerApp.ViewModels
         /// </summary>
         private readonly IServiceProvider serviceProvider;
 
+        private readonly ITimerService timerService;
+
         /// <summary>
         /// The selected timer.
         /// </summary>
@@ -29,13 +32,17 @@ namespace TimerApp.ViewModels
         /// Initializes a new instance of the <see cref="TimerViewModel"/> class.
         /// </summary>
         /// <param name="serviceProvider">The DI container.</param>
-        public TimerViewModel(IServiceProvider serviceProvider)
+        public TimerViewModel(IServiceProvider serviceProvider, ITimerService timerService)
         {
             // Initialize the object.
             this.serviceProvider = serviceProvider;
 
+            this.timerService = timerService;
+
+            this.GetTimers();
+
             // Create a single timer using DI.
-            this.MyTimers.Add(this.serviceProvider.GetRequiredService<TimerItemViewModel>());
+            // this.MyTimers.Add(this.serviceProvider.GetRequiredService<TimerItemViewModel>());
         }
 
         /// <summary>
@@ -73,5 +80,18 @@ namespace TimerApp.ViewModels
         /// Gets command to Delete timer using button on toolbar.
         /// </summary>
         public ICommand DeleteFromToolbar => new Command(o => this.MyTimers.Remove(this.SelectedTimer));
+
+        public async void GetTimers()
+        {
+
+
+            var timers = await timerService.GetTimers();
+            foreach (var timer in timers)
+            {
+                MyTimers.Add(timer);
+                System.Diagnostics.Debug.WriteLine("TEST");
+            }
+
+        }
     }
 }

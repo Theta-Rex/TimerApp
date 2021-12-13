@@ -8,6 +8,7 @@ namespace TimerApp
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
+    using TimerApp.Services;
     using TimerApp.ViewModels;
     using TimerApp.Views;
     using Xamarin.Forms;
@@ -58,6 +59,7 @@ namespace TimerApp
                 .AddTransient<MenuItemViewModel>()
                 .AddSingleton<Navigator>()
                 .AddTransient<TimerPage>()
+                .AddTransient<ITimerService, ApiService>()
                 .AddLocalization()
                 .AddLogging(loggingBuilder => App.BuildLog(configuration, loggingBuilder))
                 .BuildServiceProvider();
