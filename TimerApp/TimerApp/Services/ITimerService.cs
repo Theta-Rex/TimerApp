@@ -14,6 +14,13 @@ namespace TimerApp.Services
     public interface ITimerService
     {
         Task<IEnumerable<TimerItemViewModel>> GetTimers();
+
         Task<TimerItemViewModel> GetTimer(int id);
+
+        Task AddTimer(TimerItemViewModel timerItemViewModel);
+
+        Task DeleteTimer(TimerItemViewModel timerItemViewModel);
+
+        Task UpdateTimer(TimerItemViewModel timerItemViewModel);
     }
 }

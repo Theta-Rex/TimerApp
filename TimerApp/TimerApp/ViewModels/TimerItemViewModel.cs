@@ -6,11 +6,16 @@ namespace TimerApp.ViewModels
 {
     using System;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Globalization;
+    using System.Linq;
+    using System.Threading.Tasks;
     using System.Timers;
     using System.Windows.Input;
+    using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Localization;
     using Microsoft.Extensions.Logging;
+    using TimerApp.Services;
     using Xamarin.Forms;
 
     /// <summary>
@@ -30,7 +35,17 @@ namespace TimerApp.ViewModels
 
         private readonly ILogger logger;
 
+        private readonly IServiceProvider serviceProvider;
+
         private readonly IStringLocalizer stringLocalizer;
+
+        private readonly ITimerService timerService;
+
+        private readonly TimerViewModel timerViewModel;
+
+        public ObservableCollection<TimerItemViewModel> myTimers = new ObservableCollection<TimerItemViewModel>();
+
+        private string entryTime;
 
         private string playPauseImage;
 
@@ -46,15 +61,20 @@ namespace TimerApp.ViewModels
         /// </summary>
         /// <param name="logger">The log device.</param>
         /// <param name="stringLocalizer">Provides localized (internationalized) strings.</param>
-        public TimerItemViewModel(ILogger<TimerItemViewModel> logger, IStringLocalizer<TimerItemViewModel> stringLocalizer)
+        /// <param name="timerService">Timer service.</param>
+        /// <param name="serviceProvider"></param>
+        public TimerItemViewModel(ILogger<TimerItemViewModel> logger, IStringLocalizer<TimerItemViewModel> stringLocalizer, ITimerService timerService, IServiceProvider serviceProvider, TimerViewModel timerViewModel)
         {
             // Initialize the object.
             this.logger = logger;
             this.stringLocalizer = stringLocalizer;
+            this.timerService = timerService;
+            this.serviceProvider = serviceProvider;
+            //this.timerViewModel = this.serviceProvider.GetService<TimerViewModel>();
             this.PlayPauseImage = "Assets/play.png";
             this.Severitys = new List<string>();
             this.InstanceID = Guid.NewGuid();
-            System.Diagnostics.Debug.WriteLine(this.InstanceID);
+            // System.Diagnostics.Debug.WriteLine(this.InstanceID);
 
             foreach (string s in Enum.GetNames(typeof(Severity)))
             {
@@ -88,7 +108,17 @@ namespace TimerApp.ViewModels
         /// <summary>
         /// gets or sets EntryTime, which is the amount of time entered by the user.
         /// </summary>
-        public string EntryTime { get; set; }
+        public string EntryTime
+        {
+            get => this.entryTime;
+            set
+            {
+                if (this.entryTime != value)
+                {
+                    this.entryTime = value;
+                }
+            }
+        }
 
         /// <summary>
         /// gets or sets EntryLog, which is the message the user enters to be logged.

@@ -59,7 +59,7 @@ namespace TimerApp
                 .AddTransient<MenuItemViewModel>()
                 .AddSingleton<Navigator>()
                 .AddTransient<TimerPage>()
-                .AddTransient<ITimerService, ApiService>()
+                .AddSingleton<ITimerService, ApiService>()
                 .AddLocalization()
                 .AddLogging(loggingBuilder => App.BuildLog(configuration, loggingBuilder))
                 .BuildServiceProvider();
