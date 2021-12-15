@@ -4,6 +4,7 @@
 // <author>Joshua Kraskin</author>
 namespace TimerApp.ViewModels
 {
+    using System;
     using System.Collections.Generic;
     using System.ComponentModel;
 

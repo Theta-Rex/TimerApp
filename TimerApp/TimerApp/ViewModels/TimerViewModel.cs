@@ -12,7 +12,7 @@ namespace TimerApp.ViewModels
     using Xamarin.Forms;
 
     /// <summary>
-    /// MainViewModel class.
+    /// TimerViewModel class.
     /// </summary>
     public class TimerViewModel : BaseViewModel
     {
@@ -103,7 +103,6 @@ namespace TimerApp.ViewModels
         {
             await this.timerService.DeleteTimer(this.SelectedTimer);
             this.GetTimers();
-
         }
 
         /// <summary>
@@ -117,7 +116,8 @@ namespace TimerApp.ViewModels
                 timerItemViewModel.EntryTime = "0";
                 timerItemViewModel.SeverityId = 1;
                 timerItemViewModel.UserId = 1;
-            };
+            }
+
             await this.timerService.AddTimer(timerItemViewModel);
             this.GetTimers();
         }
@@ -131,23 +131,28 @@ namespace TimerApp.ViewModels
             var timers = await this.timerService.GetTimers();
             foreach (var timer in timers)
             {
-                timer.myTimers.Add(timer);
+                timer.TimerItemPropertyChanged += this.OnTimerItemPropertyChanged;
                 this.MyTimers.Add(timer);
-                //System.Diagnostics.Debug.WriteLine(timer.Id);
             }
         }
 
-        public async void LoadUpdateTimer(int id)
+        /// <summary>
+        /// Notifies when the TimerItem's property's value has changed.
+        /// </summary>
+        /// <param name="source">The timerItemViewModel.</param>
+        /// <param name="e">Event args.</param>
+        public void OnTimerItemPropertyChanged(object source, EventArgs e)
         {
-            if (this.timerService == null)
-            {
-                System.Diagnostics.Debug.WriteLine("Null");
-            }
-            else
-            {
-                var timer = await this.timerService.GetTimer(id);
-                await this.timerService.UpdateTimer(timer);
-            }
+            this.UpdateTimer((TimerItemViewModel)source);
+        }
+
+        /// <summary>
+        /// Notifies when the TimerItem's property's value has changed.
+        /// </summary>
+        /// <param name="timerItemViewModel">The timerItemViewModel.</param>
+        public async void UpdateTimer(TimerItemViewModel timerItemViewModel)
+        {
+            await this.timerService.UpdateTimer(timerItemViewModel);
         }
     }
 }

@@ -21,6 +21,7 @@ namespace TimerApp.Services
         private readonly string url = "http://localhost:32930/api/timeritems";
         private readonly HttpClient httpClient = new HttpClient();
 
+        /// <inheritdoc/>
         public async Task<IEnumerable<TimerItemViewModel>> GetTimers()
         {
             // HttpClient httpClient = new HttpClient();
@@ -33,6 +34,7 @@ namespace TimerApp.Services
             }
         }
 
+        /// <inheritdoc/>
         public async Task<TimerItemViewModel> GetTimer(int id)
         {
             using (HttpResponseMessage response = await this.httpClient.GetAsync(this.url + $"/{id}").ConfigureAwait(false))
@@ -44,7 +46,8 @@ namespace TimerApp.Services
             }
         }
 
-        async Task ITimerService.AddTimer(TimerItemViewModel timerItemViewModel)
+        /// <inheritdoc/>
+        public async Task AddTimer(TimerItemViewModel timerItemViewModel)
         {
             using (HttpResponseMessage response = await this.httpClient.PostAsync(this.url, new StringContent(
                 JsonConvert.SerializeObject(timerItemViewModel), Encoding.UTF8, "application/json")).ConfigureAwait(false))
@@ -53,7 +56,8 @@ namespace TimerApp.Services
             }
         }
 
-        async Task ITimerService.DeleteTimer(TimerItemViewModel timerItemViewModel)
+        /// <inheritdoc/>
+        public async Task DeleteTimer(TimerItemViewModel timerItemViewModel)
         {
             using (HttpResponseMessage response = await this.httpClient.DeleteAsync(this.url + $"/{timerItemViewModel.Id}").ConfigureAwait(false))
             {
@@ -61,9 +65,10 @@ namespace TimerApp.Services
             }
         }
 
-        async Task ITimerService.UpdateTimer(TimerItemViewModel timerItemViewModel)
+        /// <inheritdoc/>
+        public async Task UpdateTimer(TimerItemViewModel timerItemViewModel)
         {
-            using (HttpResponseMessage response = await this.httpClient.PutAsync(this.url+$"/{timerItemViewModel.Id}", new StringContent(
+            using (HttpResponseMessage response = await this.httpClient.PutAsync(this.url + $"/{timerItemViewModel.Id}", new StringContent(
                 JsonConvert.SerializeObject(timerItemViewModel), Encoding.UTF8, "application/json")).ConfigureAwait(false))
             {
                 response.EnsureSuccessStatusCode();

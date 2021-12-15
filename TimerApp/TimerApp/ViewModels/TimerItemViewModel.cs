@@ -35,15 +35,7 @@ namespace TimerApp.ViewModels
 
         private readonly ILogger logger;
 
-        private readonly IServiceProvider serviceProvider;
-
         private readonly IStringLocalizer stringLocalizer;
-
-        private readonly ITimerService timerService;
-
-        private readonly TimerViewModel timerViewModel;
-
-        public ObservableCollection<TimerItemViewModel> myTimers = new ObservableCollection<TimerItemViewModel>();
 
         private string entryTime;
 
@@ -61,20 +53,14 @@ namespace TimerApp.ViewModels
         /// </summary>
         /// <param name="logger">The log device.</param>
         /// <param name="stringLocalizer">Provides localized (internationalized) strings.</param>
-        /// <param name="timerService">Timer service.</param>
-        /// <param name="serviceProvider"></param>
-        public TimerItemViewModel(ILogger<TimerItemViewModel> logger, IStringLocalizer<TimerItemViewModel> stringLocalizer, ITimerService timerService, IServiceProvider serviceProvider, TimerViewModel timerViewModel)
+        public TimerItemViewModel(ILogger<TimerItemViewModel> logger, IStringLocalizer<TimerItemViewModel> stringLocalizer)
         {
             // Initialize the object.
             this.logger = logger;
             this.stringLocalizer = stringLocalizer;
-            this.timerService = timerService;
-            this.serviceProvider = serviceProvider;
-            //this.timerViewModel = this.serviceProvider.GetService<TimerViewModel>();
             this.PlayPauseImage = "Assets/play.png";
             this.Severitys = new List<string>();
             this.InstanceID = Guid.NewGuid();
-            // System.Diagnostics.Debug.WriteLine(this.InstanceID);
 
             foreach (string s in Enum.GetNames(typeof(Severity)))
             {
@@ -94,6 +80,11 @@ namespace TimerApp.ViewModels
                     }
                 };
         }
+
+        /// <summary>
+        /// TimerItemPropretyChanged event.
+        /// </summary>
+        public event EventHandler<TimerItemEventArgs> TimerItemPropertyChanged;
 
         /// <summary>
         /// gets or sets text for DisplayAlert when countdonw completes.
@@ -116,6 +107,7 @@ namespace TimerApp.ViewModels
                 if (this.entryTime != value)
                 {
                     this.entryTime = value;
+                    this.OnTimerItemPropertyChanged(this);
                 }
             }
         }
@@ -237,6 +229,19 @@ namespace TimerApp.ViewModels
             if (disposing)
             {
                 this.timer.Dispose();
+            }
+        }
+
+        /// <summary>
+        /// Notifies when the TimerItem's property's value has changed.
+        /// </summary>
+        /// <param name="timerItemViewModel">The timerItemViewModel.</param>
+        protected virtual void OnTimerItemPropertyChanged(TimerItemViewModel timerItemViewModel)
+        {
+            if (this.TimerItemPropertyChanged != null)
+            {
+                System.Diagnostics.Debug.Write(this.Id);
+                this.TimerItemPropertyChanged(this, new TimerItemEventArgs() { TimerItemViewModel = timerItemViewModel });
             }
         }
 
