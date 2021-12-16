@@ -67,6 +67,8 @@ namespace TimerApp.ViewModels
                 this.Severitys.Add(s);
             }
 
+            this.SelectedLogPicker = this.Severitys[0];
+
             this.timer.Elapsed += (s, e) =>
                 {
                     this.TimeRemaining = this.EndTime - DateTime.Now;

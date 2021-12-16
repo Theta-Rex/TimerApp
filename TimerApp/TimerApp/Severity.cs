@@ -12,21 +12,21 @@ namespace TimerApp
         /// <summary>
         /// Error.
         /// </summary>
-        Error,
+        Error = 4,
 
         /// <summary>
         /// Warning.
         /// </summary>
-        Warning,
+        Warning = 2,
 
         /// <summary>
         /// Debug.
         /// </summary>
-        Debug,
+        Debug = 1,
 
         /// <summary>
         /// Information.
         /// </summary>
-        Information,
+        Information = 3,
     }
 }
