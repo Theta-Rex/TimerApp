@@ -107,10 +107,6 @@ namespace TimerApp.ViewModels
                 if (this.entryTime != value)
                 {
                     this.entryTime = value;
-                    if (this.EntryTime == null)
-                    {
-                        value = "0";
-                    }
                     this.OnTimerItemPropertyChanged(this);
                 }
             }
@@ -169,7 +165,6 @@ namespace TimerApp.ViewModels
                 {
                     this.selectedLogPicker = value;
                     this.OnPropertyChanged(nameof(this.SelectedLogPicker));
-                    System.Diagnostics.Debug.WriteLine(this.SelectedLogPicker);
                 }
             }
         }
@@ -242,11 +237,7 @@ namespace TimerApp.ViewModels
         /// <param name="timerItemViewModel">The timerItemViewModel.</param>
         protected virtual void OnTimerItemPropertyChanged(TimerItemViewModel timerItemViewModel)
         {
-            if (this.TimerItemPropertyChanged != null)
-            {
-                System.Diagnostics.Debug.Write(this.Id);
-                this.TimerItemPropertyChanged(this, new TimerItemEventArgs() { TimerItemViewModel = timerItemViewModel });
-            }
+            this.TimerItemPropertyChanged?.Invoke(this, new TimerItemEventArgs() { TimerItemViewModel = timerItemViewModel });
         }
 
         /// <summary>

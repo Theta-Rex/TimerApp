@@ -21,7 +21,7 @@ namespace TimerApp.ViewModels
         /// </summary>
         private readonly IServiceProvider serviceProvider;
 
-        private ITimerService timerService;
+        private readonly ITimerService timerService;
 
         private ObservableCollection<TimerItemViewModel> myTimers;
 
@@ -79,9 +79,6 @@ namespace TimerApp.ViewModels
                 if (this.selectedTimer != value)
                 {
                     this.selectedTimer = value;
-
-                    // System.Diagnostics.Debug.WriteLine(this.SelectedTimer.Id);
-                    // this.MyTimers.Remove(this.SelectedTimer);
                 }
             }
         }
@@ -110,7 +107,6 @@ namespace TimerApp.ViewModels
         /// </summary>
         public async void AddTimerHandler()
         {
-            // MyTimers.Add(this.serviceProvider.GetRequiredService<TimerItemViewModel>());
             var timerItemViewModel = this.serviceProvider.GetRequiredService<TimerItemViewModel>();
             {
                 timerItemViewModel.EntryTime = "0";
@@ -156,6 +152,7 @@ namespace TimerApp.ViewModels
             {
                 timerItemViewModel.EntryTime = "0";
             }
+
             await this.timerService.UpdateTimer(timerItemViewModel);
         }
     }
