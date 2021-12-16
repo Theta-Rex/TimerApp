@@ -107,6 +107,10 @@ namespace TimerApp.ViewModels
                 if (this.entryTime != value)
                 {
                     this.entryTime = value;
+                    if (this.EntryTime == null)
+                    {
+                        value = "0";
+                    }
                     this.OnTimerItemPropertyChanged(this);
                 }
             }

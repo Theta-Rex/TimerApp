@@ -152,6 +152,10 @@ namespace TimerApp.ViewModels
         /// <param name="timerItemViewModel">The timerItemViewModel.</param>
         public async void UpdateTimer(TimerItemViewModel timerItemViewModel)
         {
+            if (timerItemViewModel.EntryTime == string.Empty)
+            {
+                timerItemViewModel.EntryTime = "0";
+            }
             await this.timerService.UpdateTimer(timerItemViewModel);
         }
     }
