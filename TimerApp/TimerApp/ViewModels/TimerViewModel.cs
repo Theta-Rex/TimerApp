@@ -125,10 +125,15 @@ namespace TimerApp.ViewModels
         {
             this.MyTimers.Clear();
             var timers = await this.timerService.GetTimers();
-            foreach (var timer in timers)
+            foreach (var timerItemViewModel in timers)
             {
-                timer.TimerItemPropertyChanged += this.OnTimerItemPropertyChanged;
-                this.MyTimers.Add(timer);
+                if (timerItemViewModel.SelectedLogPicker == null)
+                {
+                    timerItemViewModel.SeverityId = 1;
+                }
+
+                timerItemViewModel.TimerItemPropertyChanged += this.OnTimerItemPropertyChanged;
+                this.MyTimers.Add(timerItemViewModel);
             }
         }
 
@@ -139,7 +144,21 @@ namespace TimerApp.ViewModels
         /// <param name="e">Event args.</param>
         public void OnTimerItemPropertyChanged(object source, EventArgs e)
         {
-            this.UpdateTimer((TimerItemViewModel)source);
+            var timerItemViewModel = (TimerItemViewModel)source;
+
+            if (timerItemViewModel.SelectedLogPicker == null)
+            {
+                timerItemViewModel.SelectedLogPicker = timerItemViewModel.Severitys[0];
+            }
+
+            timerItemViewModel.SeverityId = (int)Enum.Parse(typeof(Severity), timerItemViewModel.SelectedLogPicker);
+
+            if (timerItemViewModel.SelectedLogPicker == null)
+            {
+                timerItemViewModel.SeverityId = 1;
+            }
+
+            this.UpdateTimer(timerItemViewModel);
         }
 
         /// <summary>
@@ -151,6 +170,18 @@ namespace TimerApp.ViewModels
             if (timerItemViewModel.EntryTime == string.Empty)
             {
                 timerItemViewModel.EntryTime = "0";
+            }
+
+            if (timerItemViewModel.SelectedLogPicker == null)
+            {
+                timerItemViewModel.SelectedLogPicker = timerItemViewModel.Severitys[0];
+            }
+
+            timerItemViewModel.SeverityId = (int)Enum.Parse(typeof(Severity), timerItemViewModel.SelectedLogPicker);
+
+            if (timerItemViewModel.SelectedLogPicker == null)
+            {
+                timerItemViewModel.SeverityId = 1;
             }
 
             await this.timerService.UpdateTimer(timerItemViewModel);

@@ -166,7 +166,12 @@ namespace TimerApp.ViewModels
                 if (this.selectedLogPicker != value)
                 {
                     this.selectedLogPicker = value;
+                    if (this.SelectedLogPicker == null)
+                    {
+                        this.SeverityId = 1;
+                    }
                     this.OnPropertyChanged(nameof(this.SelectedLogPicker));
+                    this.OnTimerItemPropertyChanged(this);
                 }
             }
         }
