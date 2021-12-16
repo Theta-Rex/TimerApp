@@ -6,16 +6,11 @@ namespace TimerApp.ViewModels
 {
     using System;
     using System.Collections.Generic;
-    using System.Collections.ObjectModel;
     using System.Globalization;
-    using System.Linq;
-    using System.Threading.Tasks;
     using System.Timers;
     using System.Windows.Input;
-    using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Localization;
     using Microsoft.Extensions.Logging;
-    using TimerApp.Services;
     using Xamarin.Forms;
 
     /// <summary>
@@ -170,6 +165,7 @@ namespace TimerApp.ViewModels
                     {
                         this.SeverityId = 1;
                     }
+
                     this.OnPropertyChanged(nameof(this.SelectedLogPicker));
                     this.OnTimerItemPropertyChanged(this);
                 }

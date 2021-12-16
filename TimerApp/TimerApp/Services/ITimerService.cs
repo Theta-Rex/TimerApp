@@ -4,10 +4,7 @@
 // <author>Donald Roy Airey</author>
 namespace TimerApp.Services
 {
-    using System;
     using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-    using System.Text;
     using System.Threading.Tasks;
     using TimerApp.ViewModels;
 
@@ -20,34 +17,34 @@ namespace TimerApp.Services
         /// GetTimers task.
         /// </summary>
         /// <returns><see cref="Task"/> representing the asynchronous operation.</returns>
-        Task<IEnumerable<TimerItemViewModel>> GetTimers();
+        Task<IEnumerable<TimerItem>> GetTimers();
 
         /// <summary>
         /// GetTimer task.
         /// </summary>
         /// <returns><see cref="Task"/> representing the asynchronous operation.</returns>
         /// <param name="id">The id for the TimerItem.</param>
-        Task<TimerItemViewModel> GetTimer(int id);
+        Task<TimerItem> GetTimer(int id);
 
         /// <summary>
         /// AddTimer task.
         /// </summary>
-        /// <param name="timerItemViewModel">The timerItemViewModel.</param>
+        /// <param name="timerItem">The timerItemViewModel.</param>
         /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
-        Task AddTimer(TimerItemViewModel timerItemViewModel);
+        Task AddTimer(TimerItem timerItem);
 
         /// <summary>
         /// DeleteTimer task.
         /// </summary>
-        /// <param name="timerItemViewModel">The timerItemViewModel.</param>
+        /// <param name="timerItem">The timerItemViewModel.</param>
         /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
-        Task DeleteTimer(TimerItemViewModel timerItemViewModel);
+        Task DeleteTimer(TimerItem timerItem);
 
         /// <summary>
         /// UpdateTimer task.
         /// </summary>
-        /// <param name="timerItemViewModel">The timerItemViewModel.</param>
+        /// <param name="timerItem">The timerItemViewModel.</param>
         /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
-        Task UpdateTimer(TimerItemViewModel timerItemViewModel);
+        Task UpdateTimer(TimerItem timerItem);
     }
 }

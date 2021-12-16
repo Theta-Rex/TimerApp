@@ -4,7 +4,6 @@
 // <author>Joshua Kraskin</author>
 namespace TimerApp.Services
 {
-    using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Net.Http;
@@ -22,54 +21,54 @@ namespace TimerApp.Services
         private readonly HttpClient httpClient = new HttpClient();
 
         /// <inheritdoc/>
-        public async Task<IEnumerable<TimerItemViewModel>> GetTimers()
+        public async Task<IEnumerable<TimerItem>> GetTimers()
         {
             // HttpClient httpClient = new HttpClient();
             using (HttpResponseMessage response = await this.httpClient.GetAsync(this.url).ConfigureAwait(false))
             {
                 // Make sure we were successful and, if so, parse the JSON data into a structure.
                 response.EnsureSuccessStatusCode();
-                var result = JsonConvert.DeserializeObject<ObservableCollection<TimerItemViewModel>>(await response.Content.ReadAsStringAsync().ConfigureAwait(false));
+                var result = JsonConvert.DeserializeObject<ObservableCollection<TimerItem>>(await response.Content.ReadAsStringAsync().ConfigureAwait(false));
                 return result;
             }
         }
 
         /// <inheritdoc/>
-        public async Task<TimerItemViewModel> GetTimer(int id)
+        public async Task<TimerItem> GetTimer(int id)
         {
             using (HttpResponseMessage response = await this.httpClient.GetAsync(this.url + $"/{id}").ConfigureAwait(false))
             {
                 // Make sure we were successful and, if so, parse the JSON data into a structure.
                 response.EnsureSuccessStatusCode();
-                var result = JsonConvert.DeserializeObject<TimerItemViewModel>(await response.Content.ReadAsStringAsync().ConfigureAwait(false));
+                var result = JsonConvert.DeserializeObject<TimerItem>(await response.Content.ReadAsStringAsync().ConfigureAwait(false));
                 return result;
             }
         }
 
         /// <inheritdoc/>
-        public async Task AddTimer(TimerItemViewModel timerItemViewModel)
+        public async Task AddTimer(TimerItem timerItem)
         {
             using (HttpResponseMessage response = await this.httpClient.PostAsync(this.url, new StringContent(
-                JsonConvert.SerializeObject(timerItemViewModel), Encoding.UTF8, "application/json")).ConfigureAwait(false))
+                JsonConvert.SerializeObject(timerItem), Encoding.UTF8, "application/json")).ConfigureAwait(false))
             {
                 response.EnsureSuccessStatusCode();
             }
         }
 
         /// <inheritdoc/>
-        public async Task DeleteTimer(TimerItemViewModel timerItemViewModel)
+        public async Task DeleteTimer(TimerItem timerItem)
         {
-            using (HttpResponseMessage response = await this.httpClient.DeleteAsync(this.url + $"/{timerItemViewModel.Id}").ConfigureAwait(false))
+            using (HttpResponseMessage response = await this.httpClient.DeleteAsync(this.url + $"/{timerItem.Id}").ConfigureAwait(false))
             {
                 response.EnsureSuccessStatusCode();
             }
         }
 
         /// <inheritdoc/>
-        public async Task UpdateTimer(TimerItemViewModel timerItemViewModel)
+        public async Task UpdateTimer(TimerItem timerItem)
         {
-            using (HttpResponseMessage response = await this.httpClient.PutAsync(this.url + $"/{timerItemViewModel.Id}", new StringContent(
-                JsonConvert.SerializeObject(timerItemViewModel), Encoding.UTF8, "application/json")).ConfigureAwait(false))
+            using (HttpResponseMessage response = await this.httpClient.PutAsync(this.url + $"/{timerItem.Id}", new StringContent(
+                JsonConvert.SerializeObject(timerItem), Encoding.UTF8, "application/json")).ConfigureAwait(false))
             {
                 response.EnsureSuccessStatusCode();
             }
