@@ -3,7 +3,10 @@
 			 xmlns:timerapp="clr-namespace:TimerApp.ViewModels"
 			 Title="Timers"
 			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-			 xmlns="http://xamarin.com/schemas/2014/forms">
+			 xmlns="http://xamarin.com/schemas/2014/forms" xmlns:timerapp1="clr-namespace:TimerApp">
+    <ContentPage.Resources>
+        <timerapp1:EntryTimeConverter x:Key="entryTimeConverter"/>
+    </ContentPage.Resources>
 	<ContentPage.ToolbarItems>
 		<ToolbarItem Command="{x:Binding AddTimer}"
 					 IconImageSource="assets/plus.png"
@@ -40,7 +43,7 @@
 										   Grid.Row="0"
 										   Keyboard="Numeric"
 										   Placeholder="Enter Seconds"
-										   Text="{x:Binding EntryTime}"/>
+										   Text="{x:Binding EntryTime, Converter={StaticResource entryTimeConverter}}"/>
 									<ImageButton Command="{x:Binding StartTimer}"
 												 Grid.Column="1"
 												 Grid.Row="0"

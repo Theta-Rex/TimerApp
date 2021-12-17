@@ -57,14 +57,6 @@ namespace TimerApp.Services
                 t = JsonConvert.DeserializeObject<TimerItem>(await response.Content.ReadAsStringAsync().ConfigureAwait(false));
                 return t;
             }
-
-            //using (HttpResponseMessage response = await this.httpClient.GetAsync(this.url + $"/{t.Id}").ConfigureAwait(false))
-            //{
-            //    // Make sure we were successful and, if so, parse the JSON data into a structure.
-            //    // response.EnsureSuccessStatusCode();
-            //    var result = JsonConvert.DeserializeObject<TimerItem>(await response.Content.ReadAsStringAsync().ConfigureAwait(false));
-            //    return result;
-            //}
         }
 
         /// <inheritdoc/>

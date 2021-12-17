@@ -32,7 +32,7 @@ namespace TimerApp.ViewModels
 
         private readonly IStringLocalizer stringLocalizer;
 
-        private string entryTime;
+        private int entryTime;
 
         private string playPauseImage;
 
@@ -96,7 +96,7 @@ namespace TimerApp.ViewModels
         /// <summary>
         /// gets or sets EntryTime, which is the amount of time entered by the user.
         /// </summary>
-        public string EntryTime
+        public int EntryTime
         {
             get => this.entryTime;
             set
@@ -251,7 +251,7 @@ namespace TimerApp.ViewModels
             if (!this.IsRunning)
             {
                 this.PlayPauseImage = "Assets/stop.png";
-                this.EndTime = DateTime.Now + TimeSpan.FromSeconds(int.Parse(this.EntryTime, CultureInfo.InvariantCulture));
+                this.EndTime = DateTime.Now + TimeSpan.FromSeconds(this.EntryTime);
                 this.TimeRemaining = this.EndTime - DateTime.Now;
                 this.timer.Start();
                 this.IsRunning = true;

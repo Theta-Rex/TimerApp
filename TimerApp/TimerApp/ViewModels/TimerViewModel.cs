@@ -50,7 +50,7 @@ namespace TimerApp.ViewModels
                     TimerItemViewModel timerItemViewModel = this.serviceProvider.GetRequiredService<TimerItemViewModel>();
                     timerItemViewModel.Id = timerItem.Id;
                     timerItemViewModel.UserId = timerItem.UserId;
-                    timerItemViewModel.EntryTime = Convert.ToString(timerItem.EntryTime);
+                    timerItemViewModel.EntryTime = timerItem.EntryTime;
                     timerItemViewModel.SeverityId = timerItem.SeverityId;
                     timerItemViewModel.TimerItemPropertyChanged += this.OnTimerItemPropertyChanged;
                     this.Timers.Add(timerItemViewModel);
@@ -95,10 +95,11 @@ namespace TimerApp.ViewModels
             var timerItemViewModel = this.serviceProvider.GetRequiredService<TimerItemViewModel>();
             {
                 timerItemViewModel.Id = timer.Id;
-                timerItemViewModel.EntryTime = Convert.ToString(timer.EntryTime);
+                timerItemViewModel.EntryTime = timer.EntryTime;
                 timerItemViewModel.SeverityId = timer.SeverityId;
                 timerItemViewModel.UserId = timer.UserId;
             }
+
             timerItemViewModel.TimerItemPropertyChanged += this.OnTimerItemPropertyChanged;
             this.Timers.Add(timerItemViewModel);
         }
@@ -113,7 +114,7 @@ namespace TimerApp.ViewModels
                 new TimerItem
                 {
                     Id = this.SelectedTimer.Id,
-                    EntryTime = Convert.ToInt32(this.SelectedTimer.EntryTime),
+                    EntryTime = this.SelectedTimer.EntryTime,
                     SeverityId = this.SelectedTimer.SeverityId,
                     UserId = this.SelectedTimer.UserId,
                 });
@@ -138,15 +139,6 @@ namespace TimerApp.ViewModels
             }
 
             timerItemViewModel.SeverityId = (int)Enum.Parse(typeof(Severity), timerItemViewModel.SelectedLogPicker);
-            if (timerItemViewModel.SelectedLogPicker == null)
-            {
-                timerItemViewModel.SeverityId = 1;
-            }
-
-            if (timerItemViewModel.EntryTime == string.Empty)
-            {
-                timerItemViewModel.EntryTime = "0";
-            }
 
             await this.timerService.UpdateTimer(
                 new TimerItem
