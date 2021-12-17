@@ -143,6 +143,11 @@ namespace TimerApp.ViewModels
                 timerItemViewModel.SeverityId = 1;
             }
 
+            if (timerItemViewModel.EntryTime == string.Empty)
+            {
+                timerItemViewModel.EntryTime = "0";
+            }
+
             await this.timerService.UpdateTimer(
                 new TimerItem
                 {
