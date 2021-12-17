@@ -69,9 +69,39 @@ namespace TimerApp.ViewModels
         public TimerItemViewModel SelectedTimer { get; set; }
 
         /// <summary>
+        /// Gets command to add new timer to MyTimers.
+        /// </summary>
+        public ICommand AddTimer => new Command(o => this.AddTimerHandler());
+
+        /// <summary>
         /// Gets command to Delete timer using button on toolbar.
         /// </summary>
         public ICommand Delete => new Command(o => this.DeleteTimerHandler());
+
+        /// <summary>
+        /// Adds timers.
+        /// </summary>
+        public async void AddTimerHandler()
+        {
+            var t = new TimerItem
+            {
+                EntryTime = 0,
+                SeverityId = 1,
+                UserId = 1,
+            };
+
+            var timer = await this.timerService.AddTimer(t);
+
+            var timerItemViewModel = this.serviceProvider.GetRequiredService<TimerItemViewModel>();
+            {
+                timerItemViewModel.Id = timer.Id;
+                timerItemViewModel.EntryTime = Convert.ToString(timer.EntryTime);
+                timerItemViewModel.SeverityId = timer.SeverityId;
+                timerItemViewModel.UserId = timer.UserId;
+            }
+            timerItemViewModel.TimerItemPropertyChanged += this.OnTimerItemPropertyChanged;
+            this.Timers.Add(timerItemViewModel);
+        }
 
         /// <summary>
         /// Deletes timers.

@@ -31,7 +31,7 @@ namespace TimerApp.Services
         /// </summary>
         /// <param name="timerItem">The timerItemViewModel.</param>
         /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
-        Task AddTimer(TimerItem timerItem);
+        Task<TimerItem> AddTimer(TimerItem timerItem);
 
         /// <summary>
         /// DeleteTimer task.
