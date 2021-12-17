@@ -10,7 +10,7 @@ namespace TimerApp.Services
     using System.Text;
     using System.Threading.Tasks;
     using Newtonsoft.Json;
-    using TimerApp.ViewModels;
+    using TimerApp.Domain;
 
     /// <summary>
     /// API Service class.

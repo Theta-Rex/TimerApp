@@ -6,7 +6,7 @@ namespace TimerApp.Services
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using TimerApp.ViewModels;
+    using TimerApp.Domain;
 
     /// <summary>
     /// ITimerService interface.

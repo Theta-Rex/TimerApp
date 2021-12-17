@@ -9,6 +9,7 @@ namespace TimerApp.ViewModels
     using System.Threading.Tasks;
     using System.Windows.Input;
     using Microsoft.Extensions.DependencyInjection;
+    using TimerApp.Domain;
     using TimerApp.Services;
     using Xamarin.Forms;
 
