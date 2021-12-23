@@ -38,7 +38,6 @@
 										<ColumnDefinition Width="*"/>
 										<ColumnDefinition Width="*"/>
 									</Grid.ColumnDefinitions>
-
 									<Entry Grid.Column="0"
 										   Grid.Row="0"
 										   Keyboard="Numeric"

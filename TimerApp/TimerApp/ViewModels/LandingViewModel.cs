@@ -25,7 +25,7 @@ namespace TimerApp.ViewModels
         public LandingViewModel(Navigator navigator)
         {
             this.navigator = navigator;
-            this.ButtonText = "Go to Timers";
+            this.ButtonText = "Welcome to TimerApp!";
         }
 
         /// <summary>

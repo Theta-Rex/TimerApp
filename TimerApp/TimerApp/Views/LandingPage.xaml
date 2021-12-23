@@ -5,9 +5,9 @@
 			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 			 xmlns="http://xamarin.com/schemas/2014/forms">
 	<ContentPage.Content>
-		<StackLayout>
-			<Label Text="{x:Binding ButtonText}"/>
-            <Button Text="Go to Timer Page" Command="{x:Binding NavigateToTimerPage}"/>
+		<StackLayout Style="{StaticResource ListViewStyle}">
+			<Label Text="{x:Binding ButtonText}" HorizontalOptions="Center"/>
+            <Button Text="Go to Timer Page" Command="{x:Binding NavigateToTimerPage}" HorizontalOptions="Center"/>
         </StackLayout>
 	</ContentPage.Content>
 </ContentPage>
