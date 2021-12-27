@@ -22,7 +22,7 @@ namespace TimerApp
 
             if (string.IsNullOrEmpty(entryTime))
             {
-                return 0;
+                return value;
             }
             else
             {
