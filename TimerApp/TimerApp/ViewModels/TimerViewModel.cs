@@ -145,7 +145,7 @@ namespace TimerApp.ViewModels
                 new TimerItem
                 {
                     Id = timerItemViewModel.Id,
-                    EntryTime = Convert.ToInt32(timerItemViewModel.EntryTime),
+                    EntryTime = timerItemViewModel.EntryTime,
                     SeverityId = timerItemViewModel.SeverityId,
                     UserId = timerItemViewModel.UserId,
                 });
