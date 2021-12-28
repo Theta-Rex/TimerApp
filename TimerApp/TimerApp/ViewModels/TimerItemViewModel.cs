@@ -161,6 +161,8 @@ namespace TimerApp.ViewModels
                 if (this.selectedLogPicker != value)
                 {
                     this.selectedLogPicker = value;
+
+                    // This code is needed for deleting the timer
                     if (this.SelectedLogPicker == null)
                     {
                         this.SeverityId = 1;

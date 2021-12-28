@@ -53,6 +53,9 @@ namespace TimerApp.ViewModels
                     timerItemViewModel.UserId = timerItem.UserId;
                     timerItemViewModel.EntryTime = timerItem.EntryTime;
                     timerItemViewModel.SeverityId = timerItem.SeverityId;
+
+                    // Sets the SelectedLogPicker for each TimerViewModle based on the corresponding Severity enum value.
+                    timerItemViewModel.SelectedLogPicker = Enum.GetName(typeof(Severity), timerItemViewModel.SeverityId);
                     timerItemViewModel.TimerItemPropertyChanged += this.OnTimerItemPropertyChanged;
                     this.Timers.Add(timerItemViewModel);
                 }
@@ -134,11 +137,8 @@ namespace TimerApp.ViewModels
         {
             // Extract the specific view model that generated the event from the generic argument.
             var timerItemViewModel = source as TimerItemViewModel;
-            if (timerItemViewModel.SelectedLogPicker == null)
-            {
-                timerItemViewModel.SelectedLogPicker = timerItemViewModel.Severitys[0];
-            }
 
+            // Sets SeverityId according to the correpsonding numeric value of SelectedLogPicker in Severity enum.
             timerItemViewModel.SeverityId = (int)Enum.Parse(typeof(Severity), timerItemViewModel.SelectedLogPicker);
 
             await this.timerService.UpdateTimer(
