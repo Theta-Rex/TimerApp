@@ -17,7 +17,7 @@ namespace TimerApp.Services
     /// </summary>
     public class ApiService : ITimerService
     {
-        private readonly string url = "http://localhost:32930/api/timeritems";
+        private readonly string url = "http://timerapp.eastus.cloudapp.azure.com/api/timeritems/";
         private readonly HttpClient httpClient = new HttpClient();
 
         /// <inheritdoc/>
